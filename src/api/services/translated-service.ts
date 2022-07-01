@@ -18,7 +18,7 @@ class TranslatedService extends MyMemoryService {
     /** Returns user's experience list */
     async getTranslation(word: string): Promise<TranslatedResponse[]> {
         const response = await this.httpClient.request({
-            url: `${this.baseUrl}/about-page-service/customer-api/experience`,
+            url: `${this.baseUrl}/get`,
             method: 'GET',
             params: {
                 q: word,

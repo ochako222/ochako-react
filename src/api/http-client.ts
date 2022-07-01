@@ -9,7 +9,9 @@ const httpClient = axios.create({
     headers: {
         [Header.ContentType]: 'application/json',
         [Header.Accept]: '*/*',
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
     }
 });
 
