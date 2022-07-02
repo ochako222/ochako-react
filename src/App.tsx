@@ -4,13 +4,12 @@ import { Translator } from './components/Translator';
 import { SearchInput } from './components/SearchInput';
 
 import './index.scss';
+import { Navbar } from './components/Navbar';
 
 const App: React.FC = () => {
-    const foo = 'hi';
-    console.log(foo);
-
     return (
         <div>
+            <Navbar />
             <Container centerContent>
                 <SearchInput />
                 <Translator />
