@@ -1,6 +1,21 @@
-import { Box, chakra, Image, Container, Heading, Link, Button } from '@chakra-ui/react';
+import {
+    Box,
+    chakra,
+    Image,
+    Container,
+    Heading,
+    Link,
+    Button,
+    Grid,
+    GridItem,
+    Progress,
+    Text,
+    Flex
+} from '@chakra-ui/react';
 import React from 'react';
 import styled from '@emotion/styled';
+import { IoLogoWhatsapp, IoLogoLinkedin } from 'react-icons/io5';
+import { FaTelegramPlane } from 'react-icons/fa';
 
 const ProfileImage = chakra(Image, {
     shouldForwardProp: (prop) => ['width', 'height', 'src', 'alt'].includes(prop)
@@ -84,6 +99,93 @@ export const Home: React.FC = () => {
                     Currently, he is living off of his own product called &quot; has more than 100k
                     subscribers.
                 </Paragraph>
+            </Box>
+
+            <Box py={5}>
+                <Heading as="h4" size="md" variant="section-title">
+                    I ♥
+                </Heading>
+                <Paragraph>
+                    &#129436;, art, playing guitar, traveling, coding, mechanical keyboards
+                </Paragraph>
+            </Box>
+
+            <Box py={5}>
+                <Heading as="h4" size="md" variant="section-title">
+                    My skills
+                </Heading>
+                <Grid templateColumns="repeat(4, 1fr)" gap={4}>
+                    <GridItem colSpan={2}>
+                        <Text align="center">foo</Text>
+                        <Progress colorScheme="green" size="sm" value={20} />
+                    </GridItem>
+                    <GridItem colSpan={2}>
+                        <Text align="center">foo</Text>
+                        <Progress colorScheme="green" size="sm" value={20} />
+                    </GridItem>
+                    <GridItem colSpan={2}>
+                        <Text align="center">foo</Text>
+                        <Progress colorScheme="green" size="sm" value={20} />
+                    </GridItem>
+                    <GridItem colSpan={2}>
+                        <Text align="center">foo</Text>
+                        <Progress colorScheme="green" size="sm" value={20} />
+                    </GridItem>
+                    <GridItem colSpan={2}>
+                        <Text align="center">foo</Text>
+                        <Progress colorScheme="green" size="sm" value={20} />
+                    </GridItem>
+                    <GridItem colSpan={2}>
+                        <Text align="center">foo</Text>
+                        <Progress colorScheme="green" size="sm" value={20} />
+                    </GridItem>
+                </Grid>
+            </Box>
+
+            <Box py={5}>
+                <Heading as="h3" variant="section-title">
+                    Catch up with me
+                </Heading>
+                <Container display="flex" p={2} maxW="container.md">
+                    <Flex
+                        justify="left"
+                        gap="5"
+                        direction={{ base: 'column', md: 'row' }}
+                        display={{ base: 'none', md: 'flex' }}
+                        width={{ base: 'full', md: 'auto' }}
+                        alignItems="center"
+                        flexGrow={2}
+                        mt={{ base: 4, md: 0 }}
+                    >
+                        <Link href="https://github.com/craftzdog" target="_blank">
+                            <Button
+                                variant="ghost"
+                                colorScheme="teal"
+                                leftIcon={<IoLogoWhatsapp />}
+                            >
+                                @alex
+                            </Button>
+                        </Link>
+                        <Link href="https://twitter.com/inkdrop_app" target="_blank">
+                            <Button
+                                variant="ghost"
+                                colorScheme="teal"
+                                leftIcon={<IoLogoLinkedin />}
+                            >
+                                @alex
+                            </Button>
+                        </Link>
+                        <Link href="https://instagram.com/craftzdog" target="_blank">
+                            <Button
+                                variant="ghost"
+                                colorScheme="teal"
+                                leftIcon={<FaTelegramPlane />}
+                            >
+                                @alex
+                            </Button>
+                        </Link>
+                    </Flex>
+                </Container>
             </Box>
         </Container>
     );
