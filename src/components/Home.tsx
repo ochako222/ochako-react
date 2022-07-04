@@ -1,14 +1,4 @@
-import {
-    Box,
-    chakra,
-    Image,
-    Container,
-    Heading,
-    Link,
-    Button,
-    Grid,
-    GridItem
-} from '@chakra-ui/react';
+import { Box, chakra, Image, Container, Heading, Button, Grid, GridItem } from '@chakra-ui/react';
 import React from 'react';
 import styled from '@emotion/styled';
 import { IoLogoWhatsapp, IoLogoLinkedin, IoLogoJavascript } from 'react-icons/io5';
@@ -35,6 +25,10 @@ const Paragraph = styled.p`
     padding-top: 1rem;
 `;
 
+const Social = styled.a`
+    textdecoration: none;
+`;
+
 export const Home: React.FC = () => {
     return (
         <Container py={5}>
@@ -42,14 +36,14 @@ export const Home: React.FC = () => {
                 border="1px"
                 borderColor="gray.400"
                 borderRadius="lg"
-                mb={6}
+                my={6}
                 py={3}
                 textAlign="center"
             >
                 Hello, I&apos;m software developer!
             </Box>
 
-            <Box display={{ md: 'flex' }}>
+            <Box display={{ md: 'flex' }} py={5}>
                 <Box flexGrow={1}>
                     <Heading as="h2" variant="page-title">
                         Oleksandr Chako
@@ -90,11 +84,16 @@ export const Home: React.FC = () => {
                     </Box>
                 </Box>
             </Box>
-            <Box align="center" my={4}>
-                <Link href="/works">
-                    <Button colorScheme="teal">Download CV</Button>
-                </Link>
+
+            {/* @ts-ignore */}
+            <Box align="center" py={5}>
+                <a href={`${process.env.PUBLIC_URL}/Alexander_Chako_CV.pdf`} download>
+                    <Button colorScheme="teal" variant="solid">
+                        Download CV
+                    </Button>
+                </a>
             </Box>
+
             <Box py={5}>
                 <Heading as="h4" size="md" variant="section-title">
                     Things I&apos;m doing...
@@ -108,6 +107,7 @@ export const Home: React.FC = () => {
                     subscribers.
                 </Paragraph>
             </Box>
+
             <Box py={5}>
                 <Heading as="h4" size="md" variant="section-title">
                     I ♥
@@ -116,6 +116,7 @@ export const Home: React.FC = () => {
                     &#129436;, art, playing guitar, traveling, coding, mechanical keyboards
                 </Paragraph>
             </Box>
+
             <Box py={5}>
                 <Heading as="h4" size="md" variant="section-title">
                     My stack
@@ -159,12 +160,13 @@ export const Home: React.FC = () => {
                     </GridItem>
                 </Grid>
             </Box>
+
             <Box py={5}>
                 <Heading as="h3" variant="section-title">
                     Catch up with me
                 </Heading>
                 <Container display="flex" gap={6} px={0} py={4} maxW="container.md">
-                    <Link href="https://github.com/craftzdog" target="_blank">
+                    <Social href="https://wa.me/380982829279" target="_blank">
                         <Button
                             variant="outline"
                             colorScheme="whatsapp"
@@ -172,8 +174,11 @@ export const Home: React.FC = () => {
                         >
                             Whatsapp
                         </Button>
-                    </Link>
-                    <Link href="https://twitter.com/inkdrop_app" target="_blank">
+                    </Social>
+                    <Social
+                        href="https://www.linkedin.com/in/alexander-chako-907624154/"
+                        target="_blank"
+                    >
                         <Button
                             variant="outline"
                             colorScheme="linkedin"
@@ -181,8 +186,8 @@ export const Home: React.FC = () => {
                         >
                             LinkedIn
                         </Button>
-                    </Link>
-                    <Link href="https://instagram.com/craftzdog" target="_blank">
+                    </Social>
+                    <Social href="https://t.me/AleksandrChako" target="_blank">
                         <Button
                             variant="outline"
                             colorScheme="telegram"
@@ -190,7 +195,7 @@ export const Home: React.FC = () => {
                         >
                             Telegram
                         </Button>
-                    </Link>
+                    </Social>
                 </Container>
             </Box>
         </Container>

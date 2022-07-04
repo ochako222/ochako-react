@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import {
     Box,
     Container,
@@ -34,30 +35,30 @@ export const Navbar: React.FC = () => {
                         flexGrow={2}
                         mt={{ base: 4, md: 0 }}
                     >
-                        <Link p={2} bg="grassTeal" color="#202023" href="/works">
+                        <Link p={2} href="/" style={{ color: 'inherit' }}>
                             Works
                         </Link>
-                        <Link p={2} bg="grassTeal" color="#202023" href="/posts">
+                        <Link p={2} bg="grassTeal" href="/" style={{ color: 'inherit' }}>
                             Posts
                         </Link>
                         <Link
                             p={2}
                             bg="grassTeal"
-                            color="#202023"
                             display="inline-flex"
                             alignItems="center"
-                            style={{ gap: 4 }}
+                            style={{ gap: 4, color: 'inherit' }}
                             pl={2}
-                            href="https://github.com/craftzdog/craftzdog-homepage"
+                            href="/"
                         >
                             <IoLogoGithub />
                             Source
                         </Link>
                     </Flex>
 
+                    {/* @ts-ignore */}
                     <Box
-                        flex={1}
                         align="right"
+                        flex={1}
                         ml={2}
                         display={{ base: 'inline-block', md: 'none' }}
                     >
@@ -69,17 +70,30 @@ export const Navbar: React.FC = () => {
                                 aria-label="Options"
                             />
                             <MenuList>
-                                <Link href="/">
-                                    <MenuItem as={Link}>About</MenuItem>
-                                </Link>
-                                <Link href="/works">
-                                    <MenuItem as={Link}>Works</MenuItem>
-                                </Link>
-                                <Link href="/posts">
-                                    <MenuItem as={Link}>Posts</MenuItem>
-                                </Link>
                                 <MenuItem
                                     as={Link}
+                                    style={{ color: 'inherit', textDecoration: 'none' }}
+                                    href="/"
+                                >
+                                    About
+                                </MenuItem>
+                                <MenuItem
+                                    as={Link}
+                                    style={{ color: 'inherit', textDecoration: 'none' }}
+                                    href="/"
+                                >
+                                    Works
+                                </MenuItem>
+                                <MenuItem
+                                    as={Link}
+                                    style={{ color: 'inherit', textDecoration: 'none' }}
+                                    href="/"
+                                >
+                                    Posts
+                                </MenuItem>
+                                <MenuItem
+                                    as={Link}
+                                    style={{ color: 'inherit', textDecoration: 'none' }}
                                     href="https://github.com/craftzdog/craftzdog-homepage"
                                 >
                                     View Source
