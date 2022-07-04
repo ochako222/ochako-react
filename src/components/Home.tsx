@@ -7,15 +7,24 @@ import {
     Link,
     Button,
     Grid,
-    GridItem,
-    Progress,
-    Text,
-    Flex
+    GridItem
 } from '@chakra-ui/react';
 import React from 'react';
 import styled from '@emotion/styled';
-import { IoLogoWhatsapp, IoLogoLinkedin } from 'react-icons/io5';
-import { FaTelegramPlane } from 'react-icons/fa';
+import { IoLogoWhatsapp, IoLogoLinkedin, IoLogoJavascript } from 'react-icons/io5';
+import { FaTelegramPlane, FaReact } from 'react-icons/fa';
+import {
+    SiTypescript,
+    SiCypress,
+    SiExpress,
+    SiCucumber,
+    SiWebdriverio,
+    SiPuppeteer,
+    SiNestjs,
+    SiProtractor,
+    SiMongodb,
+    SiPostgresql
+} from 'react-icons/si';
 
 const ProfileImage = chakra(Image, {
     shouldForwardProp: (prop) => ['width', 'height', 'src', 'alt'].includes(prop)
@@ -23,6 +32,7 @@ const ProfileImage = chakra(Image, {
 
 const Paragraph = styled.p`
     text-align: justify;
+    padding-top: 1rem;
 `;
 
 export const Home: React.FC = () => {
@@ -80,13 +90,11 @@ export const Home: React.FC = () => {
                     </Box>
                 </Box>
             </Box>
-
             <Box align="center" my={4}>
                 <Link href="/works">
                     <Button colorScheme="teal">Download CV</Button>
                 </Link>
             </Box>
-
             <Box py={5}>
                 <Heading as="h4" size="md" variant="section-title">
                     Things I&apos;m doing...
@@ -100,7 +108,6 @@ export const Home: React.FC = () => {
                     subscribers.
                 </Paragraph>
             </Box>
-
             <Box py={5}>
                 <Heading as="h4" size="md" variant="section-title">
                     I ♥
@@ -109,82 +116,81 @@ export const Home: React.FC = () => {
                     &#129436;, art, playing guitar, traveling, coding, mechanical keyboards
                 </Paragraph>
             </Box>
-
             <Box py={5}>
                 <Heading as="h4" size="md" variant="section-title">
-                    My skills
+                    My stack
                 </Heading>
-                <Grid templateColumns="repeat(4, 1fr)" gap={4}>
-                    <GridItem colSpan={2}>
-                        <Text align="center">foo</Text>
-                        <Progress colorScheme="green" size="sm" value={20} />
+                <Grid templateColumns="repeat(5, 1fr)" gap={4} py={4}>
+                    <GridItem>
+                        <IoLogoJavascript color="#F7E017" fontSize="3em" />
                     </GridItem>
-                    <GridItem colSpan={2}>
-                        <Text align="center">foo</Text>
-                        <Progress colorScheme="green" size="sm" value={20} />
+                    <GridItem>
+                        <SiTypescript color="#2E78C7" fontSize="2.8em" />
                     </GridItem>
-                    <GridItem colSpan={2}>
-                        <Text align="center">foo</Text>
-                        <Progress colorScheme="green" size="sm" value={20} />
+                    <GridItem>
+                        <SiCypress color="#3B3B3B" fontSize="3em" />
                     </GridItem>
-                    <GridItem colSpan={2}>
-                        <Text align="center">foo</Text>
-                        <Progress colorScheme="green" size="sm" value={20} />
+                    <GridItem>
+                        <SiCucumber color="#20A422" fontSize="3em" />
                     </GridItem>
-                    <GridItem colSpan={2}>
-                        <Text align="center">foo</Text>
-                        <Progress colorScheme="green" size="sm" value={20} />
+                    <GridItem>
+                        <FaReact color="#60DBFB" fontSize="3em" />
                     </GridItem>
-                    <GridItem colSpan={2}>
-                        <Text align="center">foo</Text>
-                        <Progress colorScheme="green" size="sm" value={20} />
+                    <GridItem>
+                        <SiExpress color="#828282" fontSize="3em" />
+                    </GridItem>
+                    <GridItem>
+                        <SiNestjs color="#EA2845" fontSize="3em" />
+                    </GridItem>
+                    <GridItem>
+                        <SiProtractor color="#E53C42" fontSize="3em" />
+                    </GridItem>
+                    <GridItem>
+                        <SiWebdriverio color="#EA5906" fontSize="3em" />
+                    </GridItem>
+                    <GridItem>
+                        <SiPuppeteer color="#7D7C7D" fontSize="3em" />
+                    </GridItem>
+                    <GridItem>
+                        <SiMongodb color="#58AA50" fontSize="3em" />
+                    </GridItem>
+                    <GridItem>
+                        <SiPostgresql color="#31648C" fontSize="3em" />
                     </GridItem>
                 </Grid>
             </Box>
-
             <Box py={5}>
                 <Heading as="h3" variant="section-title">
                     Catch up with me
                 </Heading>
-                <Container display="flex" p={2} maxW="container.md">
-                    <Flex
-                        justify="left"
-                        gap="5"
-                        direction={{ base: 'column', md: 'row' }}
-                        display={{ base: 'none', md: 'flex' }}
-                        width={{ base: 'full', md: 'auto' }}
-                        alignItems="center"
-                        flexGrow={2}
-                        mt={{ base: 4, md: 0 }}
-                    >
-                        <Link href="https://github.com/craftzdog" target="_blank">
-                            <Button
-                                variant="ghost"
-                                colorScheme="teal"
-                                leftIcon={<IoLogoWhatsapp />}
-                            >
-                                @alex
-                            </Button>
-                        </Link>
-                        <Link href="https://twitter.com/inkdrop_app" target="_blank">
-                            <Button
-                                variant="ghost"
-                                colorScheme="teal"
-                                leftIcon={<IoLogoLinkedin />}
-                            >
-                                @alex
-                            </Button>
-                        </Link>
-                        <Link href="https://instagram.com/craftzdog" target="_blank">
-                            <Button
-                                variant="ghost"
-                                colorScheme="teal"
-                                leftIcon={<FaTelegramPlane />}
-                            >
-                                @alex
-                            </Button>
-                        </Link>
-                    </Flex>
+                <Container display="flex" gap={6} px={0} py={4} maxW="container.md">
+                    <Link href="https://github.com/craftzdog" target="_blank">
+                        <Button
+                            variant="outline"
+                            colorScheme="whatsapp"
+                            leftIcon={<IoLogoWhatsapp />}
+                        >
+                            Whatsapp
+                        </Button>
+                    </Link>
+                    <Link href="https://twitter.com/inkdrop_app" target="_blank">
+                        <Button
+                            variant="outline"
+                            colorScheme="linkedin"
+                            leftIcon={<IoLogoLinkedin />}
+                        >
+                            LinkedIn
+                        </Button>
+                    </Link>
+                    <Link href="https://instagram.com/craftzdog" target="_blank">
+                        <Button
+                            variant="outline"
+                            colorScheme="telegram"
+                            leftIcon={<FaTelegramPlane />}
+                        >
+                            Telegram
+                        </Button>
+                    </Link>
                 </Container>
             </Box>
         </Container>
