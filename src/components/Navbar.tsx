@@ -21,9 +21,11 @@ export const Navbar: React.FC = () => {
             <Box as="nav" w="100%" css={{ backdropFilter: 'blur(10px)' }}>
                 <Container display="flex" p={2} maxW="container.md">
                     <Flex align="center" mr={5}>
-                        <Heading as="h1" size="lg" letterSpacing="tighter">
-                            <div>Here Logo</div>
-                        </Heading>
+                        <Link p={2} href="/" style={{ color: 'inherit', textDecoration: 'none' }}>
+                            <Heading as="h1" size="md" letterSpacing="tighter">
+                                Alexander Chako
+                            </Heading>
+                        </Link>
                     </Flex>
                     <Flex
                         justify="right"
@@ -35,10 +37,10 @@ export const Navbar: React.FC = () => {
                         flexGrow={2}
                         mt={{ base: 4, md: 0 }}
                     >
-                        <Link p={2} href="/" style={{ color: 'inherit' }}>
+                        <Link p={2} href="/works" style={{ color: 'inherit' }}>
                             Works
                         </Link>
-                        <Link p={2} bg="grassTeal" href="/" style={{ color: 'inherit' }}>
+                        <Link p={2} bg="grassTeal" href="/posts" style={{ color: 'inherit' }}>
                             Posts
                         </Link>
                         <Link
@@ -48,7 +50,7 @@ export const Navbar: React.FC = () => {
                             alignItems="center"
                             style={{ gap: 4, color: 'inherit' }}
                             pl={2}
-                            href="/"
+                            href="https://github.com/achako2012/octo-translator"
                         >
                             <IoLogoGithub />
                             Source
