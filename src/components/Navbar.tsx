@@ -96,7 +96,7 @@ export const Navbar: React.FC = () => {
                                 <MenuItem
                                     as={Link}
                                     style={{ color: 'inherit', textDecoration: 'none' }}
-                                    href="https://github.com/craftzdog/craftzdog-homepage"
+                                    href="https://github.com/achako2012/octo-translator"
                                 >
                                     View Source
                                 </MenuItem>
