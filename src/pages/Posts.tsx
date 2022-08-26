@@ -1,6 +1,6 @@
 import { Box, Container, Heading, SimpleGrid } from '@chakra-ui/react';
 import React from 'react';
-import { GridItem } from './GridItem';
+import { GridItem } from '../components/GridItem';
 
 export const Posts: React.FC = () => {
     return (

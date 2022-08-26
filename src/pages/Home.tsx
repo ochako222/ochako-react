@@ -53,7 +53,7 @@ export const Home: React.FC = () => {
                         flexible digital services. I can manage all things with planning, designing
                         and building applications, all the way to solving real-life problems with
                         code. When I&apos;m not pushing pixels, you&apos;ll find me cooking,
-                        reading, or walking out in the park
+                        reading, or watching Sci-fi.
                     </p>
                 </Box>
                 <Box
@@ -99,12 +99,10 @@ export const Home: React.FC = () => {
                     Things I&apos;m doing...
                 </Heading>
                 <Paragraph>
-                    Takuya is a freelance and a full-stack developer based in Osaka with a passion
-                    for building digital services/stuff he wants. He has a knack for all things
-                    launching products, from planning and designing all the way to solving real-life
-                    problems with code. When not online, he loves hanging out with his camera.
-                    Currently, he is living off of his own product called &quot; has more than 100k
-                    subscribers.
+                    I&apos;m a skilled QA engineer with a passion for building digital
+                    services/stuff I want. I have a knack for all things testing and developing
+                    products, from planning and designing all the way to solving real-life problems
+                    with code.
                 </Paragraph>
             </Box>
 

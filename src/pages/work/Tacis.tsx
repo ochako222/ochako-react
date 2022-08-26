@@ -1,7 +1,9 @@
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Container, Center, Image, List, ListItem, Link, Text } from '@chakra-ui/react';
 import React from 'react';
-import { Meta, Title, WorkImage } from '../../components/Work';
+import Meta from '../../components/Meta';
+import Title from '../../components/Title';
+import WorkImage from '../../components/Work';
 
 export const Tacis: React.FC = () => (
     <Container>
