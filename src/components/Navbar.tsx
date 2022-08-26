@@ -82,14 +82,14 @@ export const Navbar: React.FC = () => {
                                 <MenuItem
                                     as={Link}
                                     style={{ color: 'inherit', textDecoration: 'none' }}
-                                    href="/"
+                                    href="/works"
                                 >
                                     Works
                                 </MenuItem>
                                 <MenuItem
                                     as={Link}
                                     style={{ color: 'inherit', textDecoration: 'none' }}
-                                    href="/"
+                                    href="/posts"
                                 >
                                     Posts
                                 </MenuItem>

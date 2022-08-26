@@ -63,6 +63,7 @@ export const Home: React.FC = () => {
                     mt={{ base: 4, md: 0 }}
                     ml={{ md: 6 }}
                     textAlign="center"
+                    justifyContent="space-around"
                 >
                     <Box
                         borderColor="whiteAlpha.800"
@@ -163,7 +164,15 @@ export const Home: React.FC = () => {
                 <Heading as="h3" variant="section-title">
                     Catch up with me
                 </Heading>
-                <Container display="flex" gap={6} px={0} py={4} maxW="container.md">
+                <Container
+                    display="flex"
+                    flex-wrap="wrap"
+                    gap={6}
+                    px={0}
+                    py={4}
+                    maxW="container.md"
+                    flexWrap="wrap"
+                >
                     <Social href="https://wa.me/380982829279" target="_blank">
                         <Button
                             variant="outline"
