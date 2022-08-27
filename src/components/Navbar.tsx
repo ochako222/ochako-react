@@ -18,7 +18,13 @@ import { HamburgerIcon } from '@chakra-ui/icons';
 export const Navbar: React.FC = () => {
     return (
         <header>
-            <Box as="nav" w="100%" css={{ backdropFilter: 'blur(10px)' }}>
+            <Box
+                position="relative"
+                as="nav"
+                w="100%"
+                css={{ backdropFilter: 'blur(10px)' }}
+                zIndex={2}
+            >
                 <Container display="flex" p={2} maxW="container.md">
                     <Flex align="center" mr={5}>
                         <Link p={2} href="/" style={{ color: 'inherit', textDecoration: 'none' }}>
