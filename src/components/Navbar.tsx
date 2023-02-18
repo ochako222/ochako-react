@@ -61,6 +61,9 @@ export const Navbar: React.FC = () => {
                             <IoLogoGithub />
                             Source
                         </Link>
+                        <Link p={2} bg="grassTeal" href="/articles" style={{ color: 'inherit' }}>
+                            Articles
+                        </Link>
                     </Flex>
 
                     {/* @ts-ignore */}
