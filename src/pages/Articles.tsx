@@ -1,8 +1,8 @@
-import { Box, Button, Container, Heading } from '@chakra-ui/react';
-import React from 'react';
+import { Box, Button, Container, Heading, Input } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
 
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, get } from 'firebase/database';
+import { getDatabase, ref, get, set } from 'firebase/database';
 
 export const Articles: React.FC = () => {
     const firebaseConfig = {
@@ -18,11 +18,43 @@ export const Articles: React.FC = () => {
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    const getUsers = async () => {
-        const userRef = ref(db, `users/alex`);
-        const snapshot = await get(userRef);
+    const [user, setUser] = useState({ name: '', lastName: '' });
 
-        console.log(snapshot.val());
+    useEffect(() => {
+        const getUsers = async () => {
+            const userRef = ref(db, `users/alex`);
+            const snapshot = await get(userRef);
+            setUser(snapshot.val());
+        };
+
+        getUsers();
+    }, []);
+
+    const postChanges = () => {
+        set(ref(db, `users/alex`), {
+            name: user.name,
+            lastName: user.lastName
+        });
+    };
+
+    const handleInputChange1 = (event: { target: any }) => {
+        const { target } = event;
+        const { value } = target;
+
+        setUser({
+            name: value,
+            lastName: user.lastName
+        });
+    };
+
+    const handleInputChange2 = (event: { target: any }) => {
+        const { target } = event;
+        const { value } = target;
+
+        setUser({
+            name: user.name,
+            lastName: value
+        });
     };
 
     return (
@@ -31,9 +63,14 @@ export const Articles: React.FC = () => {
                 <Heading as="h3" fontSize={20} mb={4}>
                     Articles
                 </Heading>
+                <p>{user.name}</p>
+                <p>{user.lastName}</p>
             </Box>
 
-            <Button onClick={getUsers}>Get users</Button>
+            <Button onClick={postChanges}>Post changes to BE</Button>
+
+            <Input onChange={handleInputChange1} />
+            <Input onChange={handleInputChange2} />
         </Container>
     );
 };
