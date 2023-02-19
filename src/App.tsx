@@ -9,7 +9,7 @@ import { Work } from './pages/Work';
 import { Tacis } from './pages/work/Tacis';
 import { Crypto } from './pages/work/Crypto';
 import { ArticlesList } from './pages/articles/ArticlesList';
-import { NewArticle } from './pages/articles/NewArticle';
+import { EditArticle } from './pages/articles/NewArticle';
 import { ViewArticle } from './pages/articles/ViewArticle';
 
 const App: React.FC = () => {
@@ -21,7 +21,8 @@ const App: React.FC = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/posts" element={<Posts />} />
                     <Route path="/articles" element={<ArticlesList />} />
-                    <Route path="/articles/:id/edit" element={<NewArticle />} />
+                    <Route path="/articles/:id/edit" element={<EditArticle />} />
+                    <Route path="/articles/new" element={<EditArticle />} />
                     <Route path="/articles/:id/view" element={<ViewArticle />} />
                     <Route path="/works" element={<Work />} />
                     <Route path="/works/tacisbeyti" element={<Tacis />} />

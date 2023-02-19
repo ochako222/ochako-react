@@ -5,10 +5,9 @@ import MDEditor from '@uiw/react-md-editor';
 import rehypeSanitize from 'rehype-sanitize';
 
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, get, set } from 'firebase/database';
-import { Article } from './ArticlesList';
+import { getDatabase, ref, get, set, push } from 'firebase/database';
 
-export const NewArticle = () => {
+export const EditArticle = () => {
     const firebaseConfig = {
         apiKey: 'AIzaSyBNghR9OimZqPRsTCBuBwZaJCSOOKtjAR4',
         authDomain: 'alex-pomidoro.firebaseapp.com',
@@ -24,7 +23,6 @@ export const NewArticle = () => {
 
     const { id } = useParams();
 
-    const [article, updateArticle] = useState<Article>();
     const [markdown, updateMarkdown] = useState('');
     const [title, updateTitle] = useState('');
 
@@ -34,38 +32,36 @@ export const NewArticle = () => {
                 const articlesRef = ref(db, `articles/${id}`);
                 const snapshot = await get(articlesRef);
 
-                updateArticle(snapshot.val());
                 updateMarkdown(snapshot.val().markdown);
                 updateTitle(snapshot.val().title);
+            } else {
+                updateMarkdown('');
+                updateTitle('');
             }
         };
 
         setArticle();
     }, []);
 
-    const getStateValues = () => {
-        console.log(article);
-    };
-
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         updateTitle(event.target.value);
     };
 
     const postMarkdown = () => {
-        // console.log(title);
-        // console.log(markdown);
-        // const postListRef = ref(db, `articles/${id}`);
-        // const newPostRef = push(postListRef);
+        if (id) {
+            set(ref(db, `articles/${id}`), {
+                markdown,
+                title
+            });
+        } else {
+            const postListRef = ref(db, `articles/`);
+            const newPostRef = push(postListRef);
 
-        // set(newPostRef, {
-        //     markdown,
-        //     title
-        // });
-
-        set(ref(db, `articles/${id}`), {
-            markdown,
-            title
-        });
+            set(newPostRef, {
+                markdown,
+                title
+            });
+        }
     };
 
     return (
@@ -76,10 +72,11 @@ export const NewArticle = () => {
                 </Heading>
             </Box>
 
-            <Button onClick={getStateValues}>Get State</Button>
-            <Button onClick={postMarkdown}>Post article</Button>
+            <Button onClick={postMarkdown} colorScheme="blue">
+                Post article
+            </Button>
 
-            <Input placeholder={title} onChange={handleChange} />
+            <Input value={title} onChange={handleChange} />
 
             <div className="container">
                 <MDEditor
@@ -95,4 +92,4 @@ export const NewArticle = () => {
     );
 };
 
-export default NewArticle;
+export default EditArticle;

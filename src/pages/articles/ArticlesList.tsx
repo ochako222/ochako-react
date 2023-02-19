@@ -1,12 +1,10 @@
 import { Box, Button, Container, Heading, Spinner, SimpleGrid, Link } from '@chakra-ui/react';
 
 import React, { useEffect, useState } from 'react';
-import MDEditor from '@uiw/react-md-editor';
-import rehypeSanitize from 'rehype-sanitize';
 
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, get } from 'firebase/database';
-import { GridItem } from '../../components/GridItem';
+import { GridArticleItem } from '../../components/GridItem';
 
 export interface Article {
     id: string;
@@ -53,27 +51,15 @@ export const ArticlesList: React.FC = () => {
 
     const renderArticles = (arr: Article[]) =>
         arr.map((item: Article) => (
-            <GridItem
+            <GridArticleItem
                 key={item.id}
                 title={`${item.title}`}
                 thumbnail={`${process.env.PUBLIC_URL}/content/playwright.png`}
-                href={`/articles/${item.id}/edit`}
+                id={item.id}
             />
         ));
 
     const articles = articlesList?.length ? renderArticles(articlesList) : <Spinner />;
-
-    const showFoo = async () => {
-        console.log(articlesList);
-    };
-
-    const createArticleElement = (
-        <Link p={2} href="/articles/new" style={{ color: 'inherit', textDecoration: 'none' }}>
-            <Heading as="h1" size="md" letterSpacing="tighter">
-                New Article
-            </Heading>
-        </Link>
-    );
 
     return (
         <Container py={5}>
@@ -82,10 +68,10 @@ export const ArticlesList: React.FC = () => {
                     Articles
                 </Heading>
 
-                {createArticleElement}
+                <Link href="/articles/new">
+                    <Button colorScheme="blue">Add Article</Button>
+                </Link>
             </Box>
-
-            <Button onClick={showFoo}>Show state</Button>
 
             <Box py={5}>
                 <SimpleGrid columns={[1, 2, 2]} gap={10}>
