@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './index.scss';
@@ -11,9 +11,10 @@ import { Crypto } from './pages/work/Crypto';
 import { ArticlesList } from './pages/articles/ArticlesList';
 import { EditArticle } from './pages/articles/NewArticle';
 import { ViewArticle } from './pages/articles/ViewArticle';
+import { AuthProvider, useAuth } from './context/AuthContext';
 
-const App: React.FC = () => {
-    return (
+const App: React.FC = () => (
+    <AuthProvider>
         <div>
             <Navbar />
             <BrowserRouter>
@@ -30,7 +31,7 @@ const App: React.FC = () => {
                 </Routes>
             </BrowserRouter>
         </div>
-    );
-};
+    </AuthProvider>
+);
 
 export default App;

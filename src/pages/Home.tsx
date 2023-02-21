@@ -1,5 +1,5 @@
 import { Box, chakra, Image, Container, Heading, Button, Grid, GridItem } from '@chakra-ui/react';
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import { IoLogoWhatsapp, IoLogoLinkedin, IoLogoJavascript } from 'react-icons/io5';
 import { FaTelegramPlane, FaReact } from 'react-icons/fa';
@@ -15,6 +15,7 @@ import {
     SiMongodb,
     SiPostgresql
 } from 'react-icons/si';
+import { useAuth } from '../context/AuthContext';
 
 const ProfileImage = chakra(Image, {
     shouldForwardProp: (prop) => ['width', 'height', 'src', 'alt'].includes(prop)
@@ -30,6 +31,12 @@ const Social = styled.a`
 `;
 
 export const Home: React.FC = () => {
+    const { login, currentUser } = useAuth();
+
+    const handleFoo = async () => {
+        await login();
+    };
+
     return (
         <Container py={5}>
             <Box
@@ -47,6 +54,8 @@ export const Home: React.FC = () => {
                 <Box flexGrow={1}>
                     <Heading as="h2" variant="page-title">
                         Oleksandr Chako
+                        <Button onClick={handleFoo}>Login with Google</Button>
+                        <Button onClick={() => console.log(currentUser)}>Get User</Button>
                     </Heading>
                     <p>
                         I&apos;m a full-stack developer with a passion for building modern and
