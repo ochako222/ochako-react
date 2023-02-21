@@ -3,24 +3,10 @@ import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 import rehypeSanitize from 'rehype-sanitize';
-
-import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, get, set, push } from 'firebase/database';
+import { ref, get, set, push } from 'firebase/database';
+import { db } from '../../firebase-config';
 
 export const EditArticle = () => {
-    const firebaseConfig = {
-        apiKey: 'AIzaSyBNghR9OimZqPRsTCBuBwZaJCSOOKtjAR4',
-        authDomain: 'alex-pomidoro.firebaseapp.com',
-        databaseURL: 'https://alex-pomidoro-default-rtdb.europe-west1.firebasedatabase.app',
-        projectId: 'alex-pomidoro',
-        storageBucket: 'alex-pomidoro.appspot.com',
-        messagingSenderId: '752885762949',
-        appId: '1:752885762949:web:0d3c31a1301995112352ec'
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-
     const { id } = useParams();
 
     const [markdown, updateMarkdown] = useState('');
