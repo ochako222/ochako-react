@@ -11,22 +11,30 @@ import {
     MenuItem,
     MenuList
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useContext } from 'react';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { IoLogoGithub } from 'react-icons/io5';
 import { HamburgerIcon } from '@chakra-ui/icons';
-import { useAuth } from '../context/AuthContext';
+import { AuthContext } from '../context/AuthContext';
+import { auth } from '../firebase-config';
 
 export const Navbar: React.FC = () => {
-    const { currentUser } = useAuth();
+    const context = useContext(AuthContext);
+
+    const loginHandler = async () => {
+        const provider = new GoogleAuthProvider();
+        const result = await signInWithPopup(auth, provider);
+        context.login(result.user.email);
+    };
 
     const logo = () => {
-        if (currentUser === 'a.chako2012@gmail.com') {
-            return <Button>Log out</Button>;
+        if (context.isLoggedIn) {
+            return <Button onClick={() => context.logout()}>Log out</Button>;
         }
         return (
-            <Heading as="h1" size="md" letterSpacing="tighter">
+            <Button onClick={() => loginHandler()} variant="ghost" size="lg">
                 Olexander Chako
-            </Heading>
+            </Button>
         );
     };
 
@@ -41,9 +49,7 @@ export const Navbar: React.FC = () => {
             >
                 <Container display="flex" p={2} maxW="container.md">
                     <Flex align="center" mr={5}>
-                        <Link p={2} href="/" style={{ color: 'inherit', textDecoration: 'none' }}>
-                            {logo()}
-                        </Link>
+                        {logo()}
                     </Flex>
                     <Flex
                         justify="right"

@@ -11,27 +11,35 @@ import { Crypto } from './pages/work/Crypto';
 import { ArticlesList } from './pages/articles/ArticlesList';
 import { EditArticle } from './pages/articles/NewArticle';
 import { ViewArticle } from './pages/articles/ViewArticle';
-import { AuthProvider, useAuth } from './context/AuthContext';
+import { AuthContext, useAuth } from './context/AuthContext';
 
-const App: React.FC = () => (
-    <AuthProvider>
-        <div>
-            <Navbar />
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/posts" element={<Posts />} />
-                    <Route path="/articles" element={<ArticlesList />} />
-                    <Route path="/articles/:id/edit" element={<EditArticle />} />
-                    <Route path="/articles/new" element={<EditArticle />} />
-                    <Route path="/articles/:id/view" element={<ViewArticle />} />
-                    <Route path="/works" element={<Work />} />
-                    <Route path="/works/tacisbeyti" element={<Tacis />} />
-                    <Route path="/works/crypto" element={<Crypto />} />
-                </Routes>
-            </BrowserRouter>
-        </div>
-    </AuthProvider>
-);
+const App: React.FC = () => {
+    const { userEmail, login, logout } = useAuth();
+
+    const isLoggedIn = !!userEmail;
+
+    const auth = useMemo(() => ({ isLoggedIn, login, logout }), [isLoggedIn, login, logout]);
+
+    return (
+        <AuthContext.Provider value={auth}>
+            <div>
+                <Navbar />
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/posts" element={<Posts />} />
+                        <Route path="/articles" element={<ArticlesList />} />
+                        <Route path="/articles/:id/edit" element={<EditArticle />} />
+                        <Route path="/articles/new" element={<EditArticle />} />
+                        <Route path="/articles/:id/view" element={<ViewArticle />} />
+                        <Route path="/works" element={<Work />} />
+                        <Route path="/works/tacisbeyti" element={<Tacis />} />
+                        <Route path="/works/crypto" element={<Crypto />} />
+                    </Routes>
+                </BrowserRouter>
+            </div>
+        </AuthContext.Provider>
+    );
+};
 
 export default App;

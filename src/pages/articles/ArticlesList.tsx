@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { ref, get } from 'firebase/database';
 import { GridArticleItem } from '../../components/GridItem';
 import { db } from '../../firebase-config';
+import { useAuth } from '../../context/AuthContext';
 
 export interface Article {
     id: string;
@@ -11,6 +12,8 @@ export interface Article {
 }
 
 export const ArticlesList: React.FC = () => {
+    const { authUser } = useAuth();
+
     const [articlesList, updateArticlesList] = useState<Article[]>();
 
     useEffect(() => {
@@ -41,6 +44,7 @@ export const ArticlesList: React.FC = () => {
                 title={`${item.title}`}
                 thumbnail={`${process.env.PUBLIC_URL}/content/playwright.png`}
                 id={item.id}
+                showControls={!!authUser.email}
             />
         ));
 

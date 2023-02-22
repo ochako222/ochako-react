@@ -1,39 +1,44 @@
-import { GoogleAuthProvider, signInWithPopup, UserCredential } from 'firebase/auth';
-import React, { useContext, useState, useEffect } from 'react';
-import { auth } from '../firebase-config';
+import React, { useContext, useState, createContext, useCallback, useEffect } from 'react';
 
-const AuthContext = React.createContext({
-    currentUser: '',
-    login: () => {}
+export const AuthContext = React.createContext({
+    isLoggedIn: false,
+    login: (email: string) => {},
+    logout: () => {}
 });
 
-export function useAuth() {
-    return useContext(AuthContext);
-}
+const storageName = 'userData';
 
-export function AuthProvider({ children }: any) {
-    const [currentUser, setCurrentUser] = useState();
+export const useAuth = () => {
+    const [userEmail, setUserEmail] = useState(null);
 
-    async function login() {
-        const provider = new GoogleAuthProvider();
+    const login = useCallback((email: string) => {
+        setUserEmail(email);
 
-        const result = await signInWithPopup(auth, provider);
+        localStorage.setItem(
+            storageName,
+            JSON.stringify({
+                email
+            })
+        );
+    }, []);
 
-        setCurrentUser(result.user.email);
-    }
+    const logout = useCallback(() => {
+        setUserEmail(null);
 
-    // useEffect(() => {
-    //     const unsubscribe = auth.onAuthStateChanged((user: any) => {
-    //         setCurrentUser(user);
-    //     });
+        localStorage.removeItem(storageName);
+    }, []);
 
-    //     unsubscribe();
-    // }, []);
+    useEffect(() => {
+        const data = JSON.parse(localStorage.getItem(storageName));
 
-    const value = {
-        currentUser,
-        login
+        if (data && data.email) {
+            login(data.email);
+        }
+    }, [login]);
+
+    return {
+        login,
+        logout,
+        userEmail
     };
-
-    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-}
+};
