@@ -61,6 +61,9 @@ export const Navbar: React.FC = () => {
                         flexGrow={2}
                         mt={{ base: 4, md: 0 }}
                     >
+                        <Link p={2} href="/" style={{ color: 'inherit' }}>
+                            About
+                        </Link>
                         <Link p={2} href="/works" style={{ color: 'inherit' }}>
                             Works
                         </Link>
@@ -78,9 +81,6 @@ export const Navbar: React.FC = () => {
                         >
                             <IoLogoGithub />
                             Source
-                        </Link>
-                        <Link p={2} bg="grassTeal" href="/articles" style={{ color: 'inherit' }}>
-                            Articles
                         </Link>
                     </Flex>
 

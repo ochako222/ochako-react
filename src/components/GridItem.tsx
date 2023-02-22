@@ -7,11 +7,11 @@ interface GridItemProps {
     title: string;
 }
 
-interface GridArticleItemProps {
+interface GridPostItemProps {
     id: string;
     thumbnail: string;
     title: string;
-    showControls?: boolean;
+    isLoggedIn: boolean;
     onDelete: (id: string) => void;
 }
 
@@ -33,13 +33,7 @@ export const GridItem = ({ href, thumbnail, title }: GridItemProps) => (
     </Box>
 );
 
-export const GridArticleItem = ({
-    id,
-    thumbnail,
-    title,
-    showControls,
-    onDelete
-}: GridArticleItemProps) => {
+export const GridPostItem = ({ id, thumbnail, title, isLoggedIn, onDelete }: GridPostItemProps) => {
     const controls = () => <Button onClick={() => onDelete(id)}> Delete </Button>;
 
     return (
@@ -53,11 +47,11 @@ export const GridArticleItem = ({
                     loading="lazy"
                     borderRadius="md"
                 />
-                <LinkOverlay href={`articles/${id}`} style={{ color: 'inherit' }}>
+                <LinkOverlay href={`topics/${id}`} style={{ color: 'inherit' }}>
                     <Text mt={2}>{title}</Text>
                 </LinkOverlay>
             </LinkBox>
-            {showControls ? controls() : ''}
+            {isLoggedIn ? controls() : ''}
         </Box>
     );
 };
