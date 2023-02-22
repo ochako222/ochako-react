@@ -1,13 +1,15 @@
-import { Box, Button, Container, Heading, Input } from '@chakra-ui/react';
+import { Button, Container, Heading, Input } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 import rehypeSanitize from 'rehype-sanitize';
 import { ref, get, set, push } from 'firebase/database';
 import { db } from '../../firebase-config';
+import { AuthContext } from '../../context/AuthContext';
 
 export const EditArticle = () => {
     const { id } = useParams();
+    const context = useContext(AuthContext);
 
     const [markdown, updateMarkdown] = useState('');
     const [title, updateTitle] = useState('');
@@ -50,31 +52,41 @@ export const EditArticle = () => {
         }
     };
 
-    return (
-        <Container py={5}>
-            <Box>
-                <Heading as="h3" fontSize={20} mb={4}>
-                    Articles Foo
-                </Heading>
-            </Box>
-
+    const controls = () => {
+        <Container>
             <Button onClick={postMarkdown} colorScheme="blue">
                 Post article
             </Button>
 
             <Input value={title} onChange={handleChange} />
+        </Container>;
+    };
 
-            <div className="container">
-                <MDEditor
-                    value={markdown}
-                    onChange={updateMarkdown}
-                    previewOptions={{
-                        rehypePlugins: [[rehypeSanitize]]
-                    }}
-                />
+    return (
+        <>
+            <Container py={'5'}>
+                <Heading as="h3" fontSize={20} mb={4}>
+                    {title}
+                </Heading>
+            </Container>
+
+            {context.isLoggedIn ? controls() : ''}
+
+            <Container>
+                {context.isLoggedIn ? (
+                    <MDEditor
+                        value={markdown}
+                        onChange={updateMarkdown}
+                        previewOptions={{
+                            rehypePlugins: [[rehypeSanitize]]
+                        }}
+                    />
+                ) : (
+                    ''
+                )}
                 <MDEditor.Markdown source={markdown} style={{ whiteSpace: 'pre-wrap' }} />
-            </div>
-        </Container>
+            </Container>
+        </>
     );
 };
 

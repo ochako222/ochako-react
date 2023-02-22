@@ -1,7 +1,5 @@
-import { Box, LinkBox, Image, LinkOverlay, Text, Button, Link, Flex } from '@chakra-ui/react';
+import { Box, LinkBox, Image, LinkOverlay, Text, Button } from '@chakra-ui/react';
 import React from 'react';
-import { ref, get, set, push, remove } from 'firebase/database';
-import { db } from '../firebase-config';
 
 interface GridItemProps {
     href: string;
@@ -14,7 +12,7 @@ interface GridArticleItemProps {
     thumbnail: string;
     title: string;
     showControls?: boolean;
-    onDelete?: (id: string) => void;
+    onDelete: (id: string) => void;
 }
 
 export const GridItem = ({ href, thumbnail, title }: GridItemProps) => (
@@ -42,14 +40,7 @@ export const GridArticleItem = ({
     showControls,
     onDelete
 }: GridArticleItemProps) => {
-    const controls = () => (
-        <Flex gap="5" justifyContent={'center'}>
-            <Link href={`/articles/${id}/edit`}>
-                <Button colorScheme="blue">Edit</Button>
-            </Link>
-            <Button onClick={() => onDelete(id)}> Delete </Button>
-        </Flex>
-    );
+    const controls = () => <Button onClick={() => onDelete(id)}> Delete </Button>;
 
     return (
         <Box w="100%" textAlign="center">
@@ -62,11 +53,7 @@ export const GridArticleItem = ({
                     loading="lazy"
                     borderRadius="md"
                 />
-                <LinkOverlay
-                    href={`articles/${id}/view`}
-                    target="_blank"
-                    style={{ color: 'inherit' }}
-                >
+                <LinkOverlay href={`articles/${id}`} style={{ color: 'inherit' }}>
                     <Text mt={2}>{title}</Text>
                 </LinkOverlay>
             </LinkBox>

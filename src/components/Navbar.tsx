@@ -3,7 +3,6 @@ import {
     Button,
     Container,
     Flex,
-    Heading,
     IconButton,
     Link,
     Menu,
@@ -85,7 +84,6 @@ export const Navbar: React.FC = () => {
                         </Link>
                     </Flex>
 
-                    {/* @ts-ignore */}
                     <Box
                         align="right"
                         flex={1}

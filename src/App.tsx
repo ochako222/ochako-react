@@ -10,7 +10,6 @@ import { Tacis } from './pages/work/Tacis';
 import { Crypto } from './pages/work/Crypto';
 import { ArticlesList } from './pages/articles/ArticlesList';
 import { EditArticle } from './pages/articles/EditArticle';
-import { ViewArticle } from './pages/articles/ViewArticle';
 import { AuthContext, useAuth } from './context/AuthContext';
 
 const App: React.FC = () => {
@@ -29,8 +28,7 @@ const App: React.FC = () => {
                         <Route path="/" element={<Home />} />
                         <Route path="/posts" element={<Posts />} />
                         <Route path="/articles" element={<ArticlesList />} />
-                        <Route path="/articles/:id/edit" element={<EditArticle />} />
-                        <Route path="/articles/:id/view" element={<ViewArticle />} />
+                        <Route path="/articles/:id" element={<EditArticle />} />
                         <Route path="/articles/new" element={<EditArticle />} />
                         <Route path="/works" element={<Work />} />
                         <Route path="/works/tacisbeyti" element={<Tacis />} />

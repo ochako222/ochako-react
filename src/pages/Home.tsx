@@ -1,5 +1,5 @@
 import { Box, chakra, Image, Container, Heading, Button, Grid, GridItem } from '@chakra-ui/react';
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { IoLogoWhatsapp, IoLogoLinkedin, IoLogoJavascript } from 'react-icons/io5';
 import { FaTelegramPlane, FaReact } from 'react-icons/fa';
@@ -15,7 +15,6 @@ import {
     SiMongodb,
     SiPostgresql
 } from 'react-icons/si';
-import { useAuth } from '../context/AuthContext';
 
 const ProfileImage = chakra(Image, {
     shouldForwardProp: (prop) => ['width', 'height', 'src', 'alt'].includes(prop)
@@ -78,7 +77,6 @@ export const Home: React.FC = () => (
             </Box>
         </Box>
 
-        {/* @ts-ignore */}
         <Box align="center" py={5}>
             <a href={`${process.env.PUBLIC_URL}/Alexander_Chako_CV.pdf`} download>
                 <Button colorScheme="teal" variant="solid">
