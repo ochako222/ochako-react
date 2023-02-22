@@ -16,13 +16,14 @@ export const EditPost = () => {
     const [post, updatePost] = useState<Post>({
         id: '',
         title: '',
-        markdown: '#Foo',
+        markdown: '',
         thumbnail: '',
         color: '#000000'
     });
 
     useEffect(() => {
         const setPost = async () => {
+            console.log(id);
             if (id) {
                 const postsRef = ref(db, `posts/${id}`);
                 const snapshot = await get(postsRef);

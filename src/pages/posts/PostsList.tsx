@@ -5,6 +5,7 @@ import { GridPostItem } from '../../components/GridItem';
 import { db } from '../../firebase-config';
 import { AuthContext } from '../../context/AuthContext';
 import { Post } from '../../types';
+import { BlogCard } from '../../components/BlogCard';
 
 export const PostsList: React.FC = () => {
     const context = useContext(AuthContext);
@@ -43,7 +44,7 @@ export const PostsList: React.FC = () => {
 
     const renderPosts = (arr: Post[]) =>
         arr.map((item: Post) => (
-            <GridPostItem
+            <BlogCard
                 key={item.id}
                 title={`${item.title}`}
                 thumbnail={item.thumbnail}
