@@ -1,9 +1,8 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import {
     Box,
+    Button,
     Container,
     Flex,
-    Heading,
     IconButton,
     Link,
     Menu,
@@ -11,11 +10,34 @@ import {
     MenuItem,
     MenuList
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useContext } from 'react';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { IoLogoGithub } from 'react-icons/io5';
 import { HamburgerIcon } from '@chakra-ui/icons';
+import { AuthContext } from '../context/AuthContext';
+import { auth } from '../firebase-config';
 
 export const Navbar: React.FC = () => {
+    const context = useContext(AuthContext);
+
+    const loginHandler = async () => {
+        const provider = new GoogleAuthProvider();
+        const result = await signInWithPopup(auth, provider);
+        console.log(result.user);
+        context.login(result.user.accessToken);
+    };
+
+    const logo = () => {
+        if (context.isLoggedIn) {
+            return <Button onClick={() => context.logout()}>Log out</Button>;
+        }
+        return (
+            <Button onClick={() => loginHandler()} variant="ghost" size="lg">
+                Olexander Chako
+            </Button>
+        );
+    };
+
     return (
         <header>
             <Box
@@ -27,11 +49,7 @@ export const Navbar: React.FC = () => {
             >
                 <Container display="flex" p={2} maxW="container.md">
                     <Flex align="center" mr={5}>
-                        <Link p={2} href="/" style={{ color: 'inherit', textDecoration: 'none' }}>
-                            <Heading as="h1" size="md" letterSpacing="tighter">
-                                Alexander Chako
-                            </Heading>
-                        </Link>
+                        {logo()}
                     </Flex>
                     <Flex
                         justify="right"
@@ -43,6 +61,9 @@ export const Navbar: React.FC = () => {
                         flexGrow={2}
                         mt={{ base: 4, md: 0 }}
                     >
+                        <Link p={2} href="/" style={{ color: 'inherit' }}>
+                            About
+                        </Link>
                         <Link p={2} href="/works" style={{ color: 'inherit' }}>
                             Works
                         </Link>
@@ -63,7 +84,6 @@ export const Navbar: React.FC = () => {
                         </Link>
                     </Flex>
 
-                    {/* @ts-ignore */}
                     <Box
                         align="right"
                         flex={1}

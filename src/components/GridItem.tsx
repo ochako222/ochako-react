@@ -1,4 +1,4 @@
-import { Box, LinkBox, Image, LinkOverlay, Text } from '@chakra-ui/react';
+import { Box, LinkBox, Image, LinkOverlay, Text, Button } from '@chakra-ui/react';
 import React from 'react';
 
 interface GridItemProps {
@@ -6,7 +6,6 @@ interface GridItemProps {
     thumbnail: string;
     title: string;
 }
-
 export const GridItem = ({ href, thumbnail, title }: GridItemProps) => (
     <Box w="100%" textAlign="center">
         <LinkBox cursor="pointer">
@@ -24,5 +23,3 @@ export const GridItem = ({ href, thumbnail, title }: GridItemProps) => (
         </LinkBox>
     </Box>
 );
-
-export default GridItem;
