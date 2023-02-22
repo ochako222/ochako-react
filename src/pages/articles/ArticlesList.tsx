@@ -1,9 +1,9 @@
 import { Box, Button, Container, Heading, Spinner, SimpleGrid, Link } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
-import { ref, get } from 'firebase/database';
+import React, { useContext, useEffect, useState } from 'react';
+import { ref, get, remove } from 'firebase/database';
 import { GridArticleItem } from '../../components/GridItem';
 import { db } from '../../firebase-config';
-import { useAuth } from '../../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 
 export interface Article {
     id: string;
@@ -12,9 +12,17 @@ export interface Article {
 }
 
 export const ArticlesList: React.FC = () => {
-    const { authUser } = useAuth();
+    const context = useContext(AuthContext);
 
     const [articlesList, updateArticlesList] = useState<Article[]>();
+
+    const deleteHandle = (id: string) => {
+        const fooRef = ref(db, `articles/${id}`);
+        remove(fooRef);
+
+        const newArticlesLiist = articlesList?.filter((el) => el.id !== id);
+        updateArticlesList(newArticlesLiist);
+    };
 
     useEffect(() => {
         const setArticles = async () => {
@@ -44,23 +52,31 @@ export const ArticlesList: React.FC = () => {
                 title={`${item.title}`}
                 thumbnail={`${process.env.PUBLIC_URL}/content/playwright.png`}
                 id={item.id}
-                showControls={!!authUser.email}
+                showControls={!!context.isLoggedIn}
+                onDelete={deleteHandle}
             />
         ));
 
     const articles = articlesList?.length ? renderArticles(articlesList) : <Spinner />;
 
-    return (
-        <Container py={5}>
-            <Box>
-                <Heading as="h3" fontSize={20} mb={4}>
-                    Articles
-                </Heading>
-
+    const title = () => {
+        if (context.isLoggedIn) {
+            return (
                 <Link href="/articles/new">
                     <Button colorScheme="blue">Add Article</Button>
                 </Link>
-            </Box>
+            );
+        }
+        return (
+            <Heading as="h3" fontSize={20} mb={4}>
+                Articles
+            </Heading>
+        );
+    };
+
+    return (
+        <Container py={5}>
+            <Box>{title()}</Box>
 
             <Box py={5}>
                 <SimpleGrid columns={[1, 2, 2]} gap={10}>

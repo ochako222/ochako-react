@@ -4,8 +4,14 @@
     "parserOptions": {
         "project": "./tsconfig.json"
     },
-    "plugins": ["@typescript-eslint", "prettier", "eslint-plugin-tsdoc"],
-    "extends": ["airbnb-base", "airbnb-typescript/base", "airbnb/hooks", "prettier"],
+    "plugins": ["@typescript-eslint", "prettier", "react"],
+    "extends": [
+        "airbnb-base",
+        "airbnb-typescript/base",
+        "airbnb/hooks",
+        "plugin:react/recommended",
+        "prettier"
+    ],
     "rules": {
         "prettier/prettier": "warn",
         "class-methods-use-this": 0,
@@ -15,8 +21,8 @@
         "prefer-regex-literals": 0,
         "max-classes-per-file": 0,
         "@typescript-eslint/naming-convention": "warn",
+        "import/extensions": 0,
         "no-restricted-syntax": 0,
-        "react-hooks/exhaustive-deps": 0,
-        "import/extensions": 0
+        "react-hooks/exhaustive-deps": 0
     }
 }

@@ -1,4 +1,5 @@
-import React, { useContext, useState, createContext, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import jwt_decode from 'jwt-decode';
 
 export const AuthContext = React.createContext({
     isLoggedIn: false,
@@ -9,21 +10,24 @@ export const AuthContext = React.createContext({
 const storageName = 'userData';
 
 export const useAuth = () => {
-    const [userEmail, setUserEmail] = useState(null);
+    const [userToken, setUserToken] = useState<string | null>(null);
+    const [userId, setUserId] = useState(null);
 
-    const login = useCallback((email: string) => {
-        setUserEmail(email);
+    const login = useCallback((token: string) => {
+        setUserToken(token);
+        setUserId(jwt_decode(token).user_id);
 
         localStorage.setItem(
             storageName,
             JSON.stringify({
-                email
+                token
             })
         );
     }, []);
 
     const logout = useCallback(() => {
-        setUserEmail(null);
+        setUserToken(null);
+        setUserId(null);
 
         localStorage.removeItem(storageName);
     }, []);
@@ -31,14 +35,14 @@ export const useAuth = () => {
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem(storageName));
 
-        if (data && data.email) {
-            login(data.email);
+        if (data && data.token) {
+            login(data.token);
         }
     }, [login]);
 
     return {
         login,
         logout,
-        userEmail
+        userId
     };
 };

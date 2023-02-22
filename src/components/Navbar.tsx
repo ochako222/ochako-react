@@ -24,7 +24,8 @@ export const Navbar: React.FC = () => {
     const loginHandler = async () => {
         const provider = new GoogleAuthProvider();
         const result = await signInWithPopup(auth, provider);
-        context.login(result.user.email);
+        console.log(result.user);
+        context.login(result.user.accessToken);
     };
 
     const logo = () => {

@@ -1,5 +1,7 @@
-import { Box, LinkBox, Image, LinkOverlay, Text, Button, Link } from '@chakra-ui/react';
+import { Box, LinkBox, Image, LinkOverlay, Text, Button, Link, Flex } from '@chakra-ui/react';
 import React from 'react';
+import { ref, get, set, push, remove } from 'firebase/database';
+import { db } from '../firebase-config';
 
 interface GridItemProps {
     href: string;
@@ -12,6 +14,7 @@ interface GridArticleItemProps {
     thumbnail: string;
     title: string;
     showControls?: boolean;
+    onDelete?: (id: string) => void;
 }
 
 export const GridItem = ({ href, thumbnail, title }: GridItemProps) => (
@@ -32,14 +35,20 @@ export const GridItem = ({ href, thumbnail, title }: GridItemProps) => (
     </Box>
 );
 
-export const GridArticleItem = ({ id, thumbnail, title, showControls }: GridArticleItemProps) => {
+export const GridArticleItem = ({
+    id,
+    thumbnail,
+    title,
+    showControls,
+    onDelete
+}: GridArticleItemProps) => {
     const controls = () => (
-        <>
+        <Flex gap="5" justifyContent={'center'}>
             <Link href={`/articles/${id}/edit`}>
                 <Button colorScheme="blue">Edit</Button>
             </Link>
-            <Button> Delete </Button>
-        </>
+            <Button onClick={() => onDelete(id)}> Delete </Button>
+        </Flex>
     );
 
     return (
