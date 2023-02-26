@@ -10,15 +10,11 @@ export const AuthContext = React.createContext({
 
 const storageName = 'userData';
 
-interface UserTokenI {
-    user_id: string;
-}
-
 export const useAuth = () => {
     const [userId, setUserId] = useState('');
 
     const login = useCallback((token: string) => {
-        const userInfoFromToken = jwt_decode(token) as UserTokenI;
+        const userInfoFromToken = jwt_decode(token) as { user_id: string };
 
         setUserId(userInfoFromToken.user_id);
 

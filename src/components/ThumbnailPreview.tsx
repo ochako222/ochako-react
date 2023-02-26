@@ -32,34 +32,19 @@ export const ThumbnailPreview: React.FC<ThumbnailPreviewProps> = ({
     };
 
     return (
-        <Flex padding={'10px 0'}>
-            <Flex direction={'column'} justifyContent={'center'} gap={'1em'}>
-                <Box>
-                    <input type="file" onChange={changeFile} />
-                </Box>
-
-                <Box>
-                    <Flex gap={'1em'} alignItems={'center'}>
-                        <Input
-                            type="text"
-                            value={color}
-                            onChange={changeColor}
-                            size={'sm'}
-                            width={'50%'}
-                        />
-                        <input type="color" value={color} onChange={changeColor} />
-                    </Flex>
-                </Box>
+        <Flex padding={'10px 0'} alignItems={'center'}>
+            <input type="file" onChange={changeFile} />
+            <Flex gap={'1em'} alignItems={'center'}>
+                <Input type="text" value={color} onChange={changeColor} size={'sm'} width={'50%'} />
+                <input type="color" value={color} onChange={changeColor} />
             </Flex>
-            <Flex>
-                <Box
-                    id="thumbnail"
-                    style={{ backgroundColor: color, marginLeft: '3em  ' }}
-                    borderRadius={'5px'}
-                >
-                    <Image src={thumbnail} className={'preview'} />
-                </Box>
-            </Flex>
+            <Box
+                id="thumbnail"
+                style={{ backgroundColor: color, marginLeft: '3em ' }}
+                borderRadius={'5px'}
+            >
+                <Image src={thumbnail} className={'preview'} />
+            </Box>
         </Flex>
     );
 };

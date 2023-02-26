@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './index.scss';
+import './markdownEditor.scss';
+
 import { Navbar } from './components/Navbar';
 import { Home } from './pages/Home';
 import { Work } from './pages/Work';
