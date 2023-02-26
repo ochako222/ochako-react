@@ -22,13 +22,13 @@ export const EditPost = () => {
     });
 
     useEffect(() => {
+        console.log('EditPost');
         const setPost = async () => {
             console.log(id);
             if (id) {
                 const postsRef = ref(db, `posts/${id}`);
                 const snapshot = await get(postsRef);
 
-                console.log('Foo');
                 updatePost(snapshot.val());
             }
         };
@@ -69,7 +69,8 @@ export const EditPost = () => {
             set(ref(db, `posts/${id}`), {
                 markdown: post.markdown,
                 title: post.title,
-                thumbnail: post.thumbnail
+                thumbnail: post.thumbnail,
+                color: post.color
             });
         } else {
             const postListRef = ref(db, `posts/`);
@@ -78,53 +79,51 @@ export const EditPost = () => {
             set(newPostRef, {
                 markdown: post.markdown,
                 title: post.title,
-                thumbnail: post.thumbnail
+                thumbnail: post.thumbnail,
+                color: post.color
             });
         }
     };
 
-    return (
-        <>
-            <Container py={'5'}>
-                <Heading as="h3" fontSize={20} mb={4}>
-                    {post.title}
-                </Heading>
-            </Container>
+    const loggedView = (
+        <Container maxW="4xl" py={'5'}>
+            <Input value={post.title} onChange={onTitleChange} />
 
-            {context.isLoggedIn ? (
-                <Container>
-                    <Button onClick={postPost} colorScheme="blue">
-                        Post topic
-                    </Button>
+            <Button onClick={postPost} colorScheme="blue" marginTop={'1em'}>
+                Post topic
+            </Button>
 
-                    <Input value={post.title} onChange={onTitleChange} />
-                    <ThumbnailPreview
-                        color={post.color}
-                        thumbnail={post.thumbnail}
-                        onFileChange={onFileChange}
-                        onColorChange={onColorChange}
-                    />
-                </Container>
-            ) : (
-                ''
-            )}
+            <ThumbnailPreview
+                color={post.color}
+                thumbnail={post.thumbnail}
+                onFileChange={onFileChange}
+                onColorChange={onColorChange}
+            />
 
-            <Container>
-                {context.isLoggedIn ? (
-                    <MDEditor
-                        value={post.markdown}
-                        onChange={onMarkdownChange}
-                        previewOptions={{
-                            rehypePlugins: [[rehypeSanitize]]
-                        }}
-                    />
-                ) : (
-                    ''
-                )}
-                <MDEditor.Markdown source={post.markdown} style={{ whiteSpace: 'pre-wrap' }} />
-            </Container>
-        </>
+            <MDEditor
+                value={post.markdown}
+                onChange={onMarkdownChange}
+                previewOptions={{
+                    rehypePlugins: [[rehypeSanitize]]
+                }}
+            />
+            <MDEditor.Markdown
+                source={post.markdown}
+                style={{ whiteSpace: 'pre-wrap', paddingTop: '1.5em' }}
+            />
+        </Container>
     );
+
+    const unloggedView = (
+        <Container py={'5'} maxW="4xl">
+            <Heading as="h3" fontSize={20} mb={4}>
+                {post.title}
+            </Heading>
+            <MDEditor.Markdown source={post.markdown} style={{ whiteSpace: 'pre-wrap' }} />
+        </Container>
+    );
+
+    return <>{context.isLoggedIn ? loggedView : unloggedView}</>;
 };
 
 export default EditPost;

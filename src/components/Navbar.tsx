@@ -11,7 +11,7 @@ import {
     MenuList
 } from '@chakra-ui/react';
 import React, { useContext } from 'react';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, User } from 'firebase/auth';
 import { IoLogoGithub } from 'react-icons/io5';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { AuthContext } from '../context/AuthContext';
@@ -23,8 +23,12 @@ export const Navbar: React.FC = () => {
     const loginHandler = async () => {
         const provider = new GoogleAuthProvider();
         const result = await signInWithPopup(auth, provider);
-        console.log(result.user);
-        context.login(result.user.accessToken);
+
+        const { accessToken } = result.user as User & {
+            accessToken: string;
+        };
+
+        context.login(accessToken);
     };
 
     const logo = () => {
@@ -84,12 +88,7 @@ export const Navbar: React.FC = () => {
                         </Link>
                     </Flex>
 
-                    <Box
-                        align="right"
-                        flex={1}
-                        ml={2}
-                        display={{ base: 'inline-block', md: 'none' }}
-                    >
+                    <Box flex={1} ml={2} display={{ base: 'inline-block', md: 'none' }}>
                         <Menu isLazy id="navbar-menu">
                             <MenuButton
                                 as={IconButton}

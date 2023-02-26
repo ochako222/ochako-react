@@ -1,9 +1,7 @@
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Container, Center, Image, List, ListItem, Link, Text } from '@chakra-ui/react';
 import React from 'react';
-import Meta from '../../components/Meta';
-import Title from '../../components/Title';
-import WorkImage from '../../components/Work';
+import { Title, Meta, WorkImage } from '../../components/SimpleComponents';
 
 export const Tacis: React.FC = () => (
     <Container>
@@ -38,7 +36,7 @@ export const Tacis: React.FC = () => (
                 <span>2021/12/03</span>
             </ListItem>
             <ListItem>
-                <Meta text="WEBSITE" />
+                <Meta text={'WEBSITE'} />
                 <Link
                     href="https://tacisbeyti.com/"
                     style={{ color: '#319795', textDecoration: 'none' }}
@@ -48,17 +46,7 @@ export const Tacis: React.FC = () => (
                 </Link>
             </ListItem>
         </List>
-
-        {/* <Heading as="h4" fontSize={16} my={6}>
-            <Center>Media coverage</Center>
-        </Heading> */}
-
-        {/* <SimpleGrid columns={2} gap={2}>
-            <WorkImage src={`${process.env.PUBLIC_URL}/work/tasty_home.png`} alt="amembo" />
-            <WorkImage src="/images/works/amembo_02.gif" alt="amembo" />
-        </SimpleGrid> */}
         <WorkImage src={`${process.env.PUBLIC_URL}/work/tasty_home.png`} alt="tasty_home" />
-        {/* <WorkImage src="/images/works/amembo_04.jpg" alt="amembo" /> */}
     </Container>
 );
 

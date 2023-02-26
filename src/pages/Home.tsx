@@ -77,7 +77,7 @@ export const Home: React.FC = () => (
             </Box>
         </Box>
 
-        <Box align="center" py={5}>
+        <Box textAlign={'center'} py={5}>
             <a href={`${process.env.PUBLIC_URL}/Alexander_Chako_CV.pdf`} download>
                 <Button colorScheme="teal" variant="solid">
                     Download CV

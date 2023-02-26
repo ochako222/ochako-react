@@ -22,3 +22,22 @@ article {
     background-color: #fafafa;
     box-shadow: #f4f4f4 0px 2px 4px 0px, #f3f3f3 0px 2px 16px 0px;
 }
+
+#thumbnail {
+    margin: 0;
+    min-width: 22%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+
+    img {
+        padding: 10% 0;
+        max-width: 120px;
+        max-height: 120px;
+    }
+
+    .preview {
+        padding: 15% 0;
+    }
+}
