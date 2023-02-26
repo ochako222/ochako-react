@@ -1,3 +1,4 @@
+import { Flex, Box, Image, Input } from '@chakra-ui/react';
 import React from 'react';
 import { convertBase64File } from '../helpers/utils';
 
@@ -16,36 +17,50 @@ export const ThumbnailPreview: React.FC<ThumbnailPreviewProps> = ({
     color,
     thumbnail
 }: ThumbnailPreviewProps) => {
-    async function changeFile(event: React.ChangeEvent<HTMLInputElement>) {
+    const changeFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const { files } = event.target;
         if (files) {
             const base64 = await convertBase64File(files[0]);
             onFileChange(base64);
         }
-    }
+    };
 
-    function changeColor(event: React.ChangeEvent<HTMLInputElement>) {
+    const changeColor = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (typeof onColorChange === 'function') {
             onColorChange(event.target.value);
         }
-    }
-
-    const style = {
-        backgroundColor: color
     };
 
     return (
-        <div className="preview">
-            <input type="file" onChange={changeFile} />
-            <span className="color-picker">
-                <input type="color" value={color} onChange={changeColor} />
-                <input type="text" value={color} onChange={changeColor} />
-            </span>
-            <p>Thumbnail preview:</p>
-            <div className="thumbnail-preview" style={style}>
-                <img src={thumbnail} height="50px" alt="" />
-            </div>
-        </div>
+        <Flex padding={'10px 0'}>
+            <Flex direction={'column'} justifyContent={'center'} gap={'1em'}>
+                <Box>
+                    <input type="file" onChange={changeFile} />
+                </Box>
+
+                <Box>
+                    <Flex gap={'1em'} alignItems={'center'}>
+                        <Input
+                            type="text"
+                            value={color}
+                            onChange={changeColor}
+                            size={'sm'}
+                            width={'50%'}
+                        />
+                        <input type="color" value={color} onChange={changeColor} />
+                    </Flex>
+                </Box>
+            </Flex>
+            <Flex>
+                <Box
+                    id="thumbnail"
+                    style={{ backgroundColor: color, marginLeft: '3em  ' }}
+                    borderRadius={'5px'}
+                >
+                    <Image src={thumbnail} className={'preview'} />
+                </Box>
+            </Flex>
+        </Flex>
     );
 };
 

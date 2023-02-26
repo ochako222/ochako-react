@@ -1,7 +1,6 @@
 import { Box, Button, Container, Heading, Spinner, SimpleGrid, Link } from '@chakra-ui/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { ref, get, remove } from 'firebase/database';
-import { GridPostItem } from '../../components/GridItem';
 import { db } from '../../firebase-config';
 import { AuthContext } from '../../context/AuthContext';
 import { Post } from '../../types';
@@ -20,6 +19,7 @@ export const PostsList: React.FC = () => {
     };
 
     useEffect(() => {
+        console.log('PostList');
         const setPost = async () => {
             const postRef = ref(db, `posts`);
             const snapshot = await get(postRef);
@@ -31,11 +31,11 @@ export const PostsList: React.FC = () => {
                     id: key,
                     title: value?.title,
                     markdown: value?.markdown,
-                    thumbnail: value?.thumbnail
+                    thumbnail: value?.thumbnail,
+                    color: value?.color
                 });
             }
 
-            console.log('Foo');
             updatePostsList(posts);
         };
 
@@ -45,10 +45,8 @@ export const PostsList: React.FC = () => {
     const renderPosts = (arr: Post[]) =>
         arr.map((item: Post) => (
             <BlogCard
+                post={item}
                 key={item.id}
-                title={`${item.title}`}
-                thumbnail={item.thumbnail}
-                id={item.id}
                 isLoggedIn={context.isLoggedIn}
                 onDelete={deletePost}
             />

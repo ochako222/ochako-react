@@ -1,6 +1,6 @@
 import { Box, Container, Heading, SimpleGrid } from '@chakra-ui/react';
 import React from 'react';
-import { WorkGridItem } from '../components/WorkGridItem';
+import { WorkGridItem } from '../components/SimpleComponents';
 
 export const Work: React.FC = () => (
     <Container py={5}>

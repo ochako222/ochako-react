@@ -22,13 +22,13 @@ export const EditPost = () => {
     });
 
     useEffect(() => {
+        console.log('EditPost');
         const setPost = async () => {
             console.log(id);
             if (id) {
                 const postsRef = ref(db, `posts/${id}`);
                 const snapshot = await get(postsRef);
 
-                console.log('Foo');
                 updatePost(snapshot.val());
             }
         };
@@ -69,7 +69,8 @@ export const EditPost = () => {
             set(ref(db, `posts/${id}`), {
                 markdown: post.markdown,
                 title: post.title,
-                thumbnail: post.thumbnail
+                thumbnail: post.thumbnail,
+                color: post.color
             });
         } else {
             const postListRef = ref(db, `posts/`);
@@ -78,26 +79,31 @@ export const EditPost = () => {
             set(newPostRef, {
                 markdown: post.markdown,
                 title: post.title,
-                thumbnail: post.thumbnail
+                thumbnail: post.thumbnail,
+                color: post.color
             });
         }
     };
 
     return (
         <>
-            <Container py={'5'}>
-                <Heading as="h3" fontSize={20} mb={4}>
-                    {post.title}
-                </Heading>
-            </Container>
-
             {context.isLoggedIn ? (
                 <Container>
-                    <Button onClick={postPost} colorScheme="blue">
+                    <Input value={post.title} onChange={onTitleChange} />
+                </Container>
+            ) : (
+                <Container py={'5'}>
+                    <Heading as="h3" fontSize={20} mb={4}>
+                        {post.title}
+                    </Heading>
+                </Container>
+            )}
+            {context.isLoggedIn ? (
+                <Container>
+                    <Button onClick={postPost} colorScheme="blue" marginTop={'1em'}>
                         Post topic
                     </Button>
 
-                    <Input value={post.title} onChange={onTitleChange} />
                     <ThumbnailPreview
                         color={post.color}
                         thumbnail={post.thumbnail}

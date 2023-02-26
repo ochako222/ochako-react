@@ -1,15 +1,17 @@
 import { Card, CardBody, CardFooter } from '@chakra-ui/card';
-import { Image, Stack, Heading, Divider, ButtonGroup, Button, LinkOverlay } from '@chakra-ui/react';
+import { Image, Stack, Heading, ButtonGroup, Button, LinkOverlay, Box } from '@chakra-ui/react';
+
+import { Post } from '../types';
 
 interface GridPostItemProps {
-    id: string;
-    thumbnail: string;
-    title: string;
+    post: Post;
     isLoggedIn: boolean;
     onDelete: (id: string) => void;
 }
 
-export const BlogCard = ({ id, thumbnail, title, isLoggedIn, onDelete }: GridPostItemProps) => {
+export const BlogCard = ({ post, isLoggedIn, onDelete }: GridPostItemProps) => {
+    const { id, color, title, thumbnail } = post;
+
     const controls = () => (
         <CardFooter>
             <ButtonGroup spacing="2">
@@ -23,7 +25,9 @@ export const BlogCard = ({ id, thumbnail, title, isLoggedIn, onDelete }: GridPos
     return (
         <Card maxW="sm">
             <CardBody>
-                <Image src={thumbnail} alt={title} borderRadius="lg" />
+                <Box id="thumbnail" style={{ backgroundColor: color }}>
+                    <Image src={thumbnail} alt={title} borderRadius="lg" />
+                </Box>
                 <Stack mt="6" spacing="3">
                     <LinkOverlay href={`posts/${id}`} style={{ color: 'inherit' }}>
                         <Heading size="md">{title}</Heading>
@@ -31,7 +35,6 @@ export const BlogCard = ({ id, thumbnail, title, isLoggedIn, onDelete }: GridPos
                 </Stack>
             </CardBody>
 
-            <Divider />
             {isLoggedIn ? controls() : ''}
         </Card>
     );
