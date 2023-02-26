@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ref, get, remove } from 'firebase/database';
 import { db } from '../../firebase-config';
 import { AuthContext } from '../../context/AuthContext';
-import { Post } from '../../types';
+import { FirebasePostsI, Post } from '../../types';
 import { BlogCard } from '../../components/BlogCard';
 
 export const PostsList: React.FC = () => {
@@ -24,15 +24,17 @@ export const PostsList: React.FC = () => {
             const postRef = ref(db, `posts`);
             const snapshot = await get(postRef);
 
+            const fireBasePosts = snapshot.val() as FirebasePostsI[];
+
             const posts: Post[] = [];
 
-            for (const [key, value] of Object.entries(snapshot.val())) {
+            for (const [key, value] of Object.entries(fireBasePosts)) {
                 posts.push({
                     id: key,
-                    title: value?.title,
-                    markdown: value?.markdown,
-                    thumbnail: value?.thumbnail,
-                    color: value?.color
+                    title: value.title,
+                    markdown: value.markdown,
+                    thumbnail: value.thumbnail,
+                    color: value.color
                 });
             }
 

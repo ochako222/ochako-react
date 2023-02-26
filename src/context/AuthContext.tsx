@@ -10,13 +10,17 @@ export const AuthContext = React.createContext({
 
 const storageName = 'userData';
 
+interface UserTokenI {
+    user_id: string;
+}
+
 export const useAuth = () => {
-    const [, setUserToken] = useState<string | null>(null);
-    const [userId, setUserId] = useState(null);
+    const [userId, setUserId] = useState('');
 
     const login = useCallback((token: string) => {
-        setUserToken(token);
-        setUserId(jwt_decode(token).user_id);
+        const userInfoFromToken = jwt_decode(token) as UserTokenI;
+
+        setUserId(userInfoFromToken.user_id);
 
         localStorage.setItem(
             storageName,
@@ -27,18 +31,22 @@ export const useAuth = () => {
     }, []);
 
     const logout = useCallback(() => {
-        setUserToken(null);
-        setUserId(null);
+        setUserId('');
 
         localStorage.removeItem(storageName);
     }, []);
 
     useEffect(() => {
         console.log('Auth');
-        const data = JSON.parse(localStorage.getItem(storageName));
 
-        if (data && data.token) {
-            login(data.token);
+        const storage = localStorage.getItem(storageName);
+
+        if (storage) {
+            const data = JSON.parse(storage);
+
+            if (data.token) {
+                login(data.token);
+            }
         }
     }, [login]);
 
