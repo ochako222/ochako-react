@@ -6,15 +6,14 @@ import { FaTelegramPlane, FaReact } from 'react-icons/fa';
 import {
     SiTypescript,
     SiCypress,
-    SiExpress,
-    SiCucumber,
-    SiWebdriverio,
-    SiPuppeteer,
+    SiPlaywright,
     SiNestjs,
-    SiProtractor,
     SiMongodb,
-    SiPostgresql
+    SiPython,
+    SiPlotly
 } from 'react-icons/si';
+
+import { TbSql } from 'react-icons/tb';
 
 const ProfileImage = chakra(Image, {
     shouldForwardProp: (prop) => ['width', 'height', 'src', 'alt'].includes(prop)
@@ -32,7 +31,7 @@ const Social = styled.a`
 export const Home: React.FC = () => (
     <Container py={5}>
         <Box border="1px" borderColor="gray.400" borderRadius="lg" my={6} py={3} textAlign="center">
-            Hello, I&apos;m software developer!
+            Hello, I&apos;m software engineer in test!
         </Box>
 
         <Box display={{ md: 'flex' }} py={5}>
@@ -41,10 +40,10 @@ export const Home: React.FC = () => (
                     Oleksandr Chako
                 </Heading>
                 <p>
-                    I&apos;m a full-stack developer with a passion for building modern and flexible
-                    digital services. I can manage all things with planning, designing and building
-                    applications, all the way to solving real-life problems with code. When I&apos;m
-                    not pushing pixels, you&apos;ll find me cooking, reading, or watching Sci-fi.
+                    I&apos;m a software developer in tests with a passion for building modern and
+                    flexible digital services. I can manage all things with planning, designing and
+                    testing applications. When I&apos;m not pushing pixels, you&apos;ll find me
+                    cooking, or watching Sci-fi.
                 </p>
             </Box>
             <Box
@@ -90,7 +89,7 @@ export const Home: React.FC = () => (
                 Things I&apos;m doing...
             </Heading>
             <Paragraph>
-                I&apos;m a skilled QA engineer with a passion for building digital services/stuff I
+                I&apos;m a skilled AQA engineer with a passion for building digital services/stuff I
                 want. I have a knack for all things testing and developing products, from planning
                 and designing all the way to solving real-life problems with code.
             </Paragraph>
@@ -100,9 +99,7 @@ export const Home: React.FC = () => (
             <Heading as="h4" size="md" variant="section-title">
                 I ♥
             </Heading>
-            <Paragraph>
-                &#129436;, art, playing guitar, traveling, coding, mechanical keyboards
-            </Paragraph>
+            <Paragraph>&#129436;, traveling, ps5, coding, mechanical keyboards</Paragraph>
         </Box>
 
         <Box py={5}>
@@ -117,34 +114,28 @@ export const Home: React.FC = () => (
                     <SiTypescript color="#2E78C7" fontSize="2.8em" />
                 </GridItem>
                 <GridItem>
-                    <SiCypress color="#3B3B3B" fontSize="3em" />
+                    <SiPython color="#20A422" fontSize="3em" />
                 </GridItem>
                 <GridItem>
-                    <SiCucumber color="#20A422" fontSize="3em" />
-                </GridItem>
-                <GridItem>
-                    <FaReact color="#60DBFB" fontSize="3em" />
-                </GridItem>
-                <GridItem>
-                    <SiExpress color="#828282" fontSize="3em" />
-                </GridItem>
-                <GridItem>
-                    <SiNestjs color="#EA2845" fontSize="3em" />
-                </GridItem>
-                <GridItem>
-                    <SiProtractor color="#E53C42" fontSize="3em" />
-                </GridItem>
-                <GridItem>
-                    <SiWebdriverio color="#EA5906" fontSize="3em" />
-                </GridItem>
-                <GridItem>
-                    <SiPuppeteer color="#7D7C7D" fontSize="3em" />
+                    <TbSql color="#31648C" fontSize="3em" />
                 </GridItem>
                 <GridItem>
                     <SiMongodb color="#58AA50" fontSize="3em" />
                 </GridItem>
                 <GridItem>
-                    <SiPostgresql color="#31648C" fontSize="3em" />
+                    <SiCypress color="#3B3B3B" fontSize="3em" />
+                </GridItem>
+                <GridItem>
+                    <SiPlaywright color="#3B3B3B" fontSize="3em" />
+                </GridItem>
+                <GridItem>
+                    <FaReact color="#60DBFB" fontSize="3em" />
+                </GridItem>
+                <GridItem>
+                    <SiNestjs color="#EA2845" fontSize="3em" />
+                </GridItem>
+                <GridItem>
+                    <SiPlotly color="#E53C42" fontSize="3em" />
                 </GridItem>
             </Grid>
         </Box>

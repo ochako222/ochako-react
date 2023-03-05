@@ -28,7 +28,7 @@ export const Navbar: React.FC = () => {
             accessToken: string;
         };
 
-        context.login(accessToken);
+        context.login(accessToken, `${Date.now()}`);
     };
 
     const logo = () => {
@@ -88,7 +88,12 @@ export const Navbar: React.FC = () => {
                         </Link>
                     </Flex>
 
-                    <Box flex={1} ml={2} display={{ base: 'inline-block', md: 'none' }}>
+                    <Box
+                        flex={1}
+                        ml={2}
+                        textAlign={'right'}
+                        display={{ base: 'inline-block', md: 'none' }}
+                    >
                         <Menu isLazy id="navbar-menu">
                             <MenuButton
                                 as={IconButton}

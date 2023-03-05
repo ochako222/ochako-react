@@ -4,44 +4,50 @@ import jwt_decode from 'jwt-decode';
 
 export const AuthContext = React.createContext({
     isLoggedIn: false,
-    login: (token: string) => {},
+    login: (token: string, timestamp: string) => {},
     logout: () => {}
 });
 
-const storageName = 'userData';
+enum StorageItems {
+    TOKEN = 'token',
+    TIMESTAMP = 'timeStamp'
+}
 
 export const useAuth = () => {
     const [userId, setUserId] = useState('');
 
-    const login = useCallback((token: string) => {
+    const login = useCallback((token: string, timestamp: string) => {
         const userInfoFromToken = jwt_decode(token) as { user_id: string };
 
         setUserId(userInfoFromToken.user_id);
 
-        localStorage.setItem(
-            storageName,
-            JSON.stringify({
-                token
-            })
-        );
+        localStorage.setItem(StorageItems.TIMESTAMP, timestamp);
+
+        localStorage.setItem(StorageItems.TOKEN, token);
     }, []);
 
     const logout = useCallback(() => {
         setUserId('');
 
-        localStorage.removeItem(storageName);
+        localStorage.removeItem(StorageItems.TOKEN);
+        localStorage.removeItem(StorageItems.TIMESTAMP);
     }, []);
 
     useEffect(() => {
-        console.log('Auth');
+        const token = localStorage.getItem(StorageItems.TOKEN);
+        const timestamp = localStorage.getItem(StorageItems.TIMESTAMP);
 
-        const storage = localStorage.getItem(storageName);
+        if (token && timestamp && process.env.REACT_APP_EXPIRY_PERIOD) {
+            const expiry =
+                new Date(parseInt(timestamp)).getTime() +
+                parseInt(process.env.REACT_APP_EXPIRY_PERIOD);
 
-        if (storage) {
-            const data = JSON.parse(storage);
+            const currentDate = new Date().valueOf();
 
-            if (data.token) {
-                login(data.token);
+            if (expiry < currentDate) {
+                logout();
+            } else {
+                login(token, timestamp);
             }
         }
     }, [login]);

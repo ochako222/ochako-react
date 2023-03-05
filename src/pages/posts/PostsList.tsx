@@ -57,21 +57,19 @@ export const PostsList: React.FC = () => {
     const posts = postsList?.length ? renderPosts(postsList) : <Spinner />;
 
     return (
-        <Container py={5}>
+        <Container py={5} maxW="4xl">
             <Box>
                 {context.isLoggedIn ? (
                     <Link href="/posts/new">
                         <Button colorScheme="blue">Add Topic</Button>
                     </Link>
                 ) : (
-                    <Heading as="h3" fontSize={20} mb={4}>
-                        Posts
-                    </Heading>
+                    ''
                 )}
             </Box>
 
             <Box py={5}>
-                <SimpleGrid columns={[1, 2, 2]} gap={10}>
+                <SimpleGrid columns={[2, 2, 3]} gap={10}>
                     {posts}
                 </SimpleGrid>
             </Box>
