@@ -119,7 +119,7 @@ export const EditPost = () => {
             <Heading as="h3" fontSize={20} mb={4}>
                 {post.title}
             </Heading>
-            <MDEditor.Markdown source={post.markdown} style={{ whiteSpace: 'pre-wrap' }} />
+            <MDEditor.Markdown source={post.markdown} />
         </Container>
     );
 
