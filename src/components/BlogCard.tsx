@@ -29,7 +29,7 @@ export const BlogCard = ({ post, isLoggedIn, onDelete }: GridPostItemProps) => {
                     <Image src={thumbnail} alt={title} borderRadius="lg" />
                 </Box>
                 <Stack mt="6" spacing="3">
-                    <LinkOverlay href={`${id}`} style={{ color: 'inherit' }}>
+                    <LinkOverlay href={`posts/${id}`} style={{ color: 'inherit' }}>
                         <Heading size="md">{title}</Heading>
                     </LinkOverlay>
                 </Stack>
