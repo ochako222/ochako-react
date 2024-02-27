@@ -68,9 +68,6 @@ export const Navbar: React.FC = () => {
                         <Link p={2} href="/" style={{ color: 'inherit' }}>
                             About
                         </Link>
-                        <Link p={2} href="/works" style={{ color: 'inherit' }}>
-                            Works
-                        </Link>
                         <Link p={2} bg="grassTeal" href="/posts" style={{ color: 'inherit' }}>
                             Posts
                         </Link>
@@ -108,13 +105,6 @@ export const Navbar: React.FC = () => {
                                     href="/"
                                 >
                                     About
-                                </MenuItem>
-                                <MenuItem
-                                    as={Link}
-                                    style={{ color: 'inherit', textDecoration: 'none' }}
-                                    href="/works"
-                                >
-                                    Works
                                 </MenuItem>
                                 <MenuItem
                                     as={Link}

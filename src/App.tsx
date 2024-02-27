@@ -5,9 +5,6 @@ import './index.scss';
 
 import { Navbar } from './components/Navbar';
 import { Home } from './pages/Home';
-import { Work } from './pages/Work';
-import { Tacis } from './pages/work/Tacis';
-import { Crypto } from './pages/work/Crypto';
 
 import { AuthContext, useAuth } from './context/AuthContext';
 import EditPost from './pages/posts/EditPost';
@@ -30,9 +27,6 @@ const App: React.FC = () => {
                         <Route path="/posts" element={<PostsList />} />
                         <Route path="/posts/:id" element={<EditPost />} />
                         <Route path="/posts/new" element={<EditPost />} />
-                        <Route path="/works" element={<Work />} />
-                        <Route path="/works/tacisbeyti" element={<Tacis />} />
-                        <Route path="/works/crypto" element={<Crypto />} />
                     </Routes>
                 </BrowserRouter>
             </div>
