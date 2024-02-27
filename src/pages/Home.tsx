@@ -43,7 +43,7 @@ export const Home: React.FC = () => (
                     I&apos;m a software developer in tests with a passion for building modern and
                     flexible digital services. I can manage all things with planning, designing and
                     testing applications. When I&apos;m not pushing pixels, you&apos;ll find me
-                    cooking, or watching Sci-fi.
+                    watching Sci-fi.
                 </p>
             </Box>
             <Box
@@ -93,13 +93,6 @@ export const Home: React.FC = () => (
                 want. I have a knack for all things testing and developing products, from planning
                 and designing all the way to solving real-life problems with code.
             </Paragraph>
-        </Box>
-
-        <Box py={5}>
-            <Heading as="h4" size="md" variant="section-title">
-                I ♥
-            </Heading>
-            <Paragraph>&#129436;, traveling, ps5, coding, mechanical keyboards</Paragraph>
         </Box>
 
         <Box py={5}>
