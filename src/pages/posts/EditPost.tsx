@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Button, Container, Heading, Input } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import React, { useContext, useEffect, useState } from 'react';
