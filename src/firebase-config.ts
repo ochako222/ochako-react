@@ -12,7 +12,11 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_APP_ID
 };
 
-const app = initializeApp(firebaseConfig);
+let app = null;
 
-export const auth = getAuth(app);
-export const db = getDatabase(app);
+if (firebaseConfig.apiKey) {
+    app = initializeApp(firebaseConfig);
+}
+
+export const auth = app ? getAuth(app) : null;
+export const db = app ? getDatabase(app) : null;

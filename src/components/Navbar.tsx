@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
     Box,
     Button,
@@ -8,7 +9,8 @@ import {
     Menu,
     MenuButton,
     MenuItem,
-    MenuList
+    MenuList,
+    Image
 } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import { GoogleAuthProvider, signInWithPopup, User } from 'firebase/auth';
@@ -51,7 +53,11 @@ export const Navbar: React.FC = () => {
                 css={{ backdropFilter: 'blur(10px)' }}
                 zIndex={2}
             >
-                <Container display="flex" p={2} maxW="container.md">
+                <Container
+                    display="flex"
+                    p={2}
+                    maxW={{ base: 'container.md', md: 'container.lg', lg: '60%' }}
+                >
                     <Flex align="center" mr={5}>
                         {logo()}
                     </Flex>
@@ -78,10 +84,18 @@ export const Navbar: React.FC = () => {
                             alignItems="center"
                             style={{ gap: 4, color: 'inherit' }}
                             pl={2}
-                            href="https://github.com/achako2012/octo-translator"
+                            href="https://github.com/achako2012/about-alex"
                         >
                             <IoLogoGithub />
                             Source
+                        </Link>
+                        <Link href="https://buymeacoffee.com/aboutalex">
+                            <Image
+                                objectFit="cover"
+                                src={`${process.env.PUBLIC_URL}/coffee.webp`}
+                                alt="Dan Abramov"
+                                width="10em"
+                            />
                         </Link>
                     </Flex>
 
@@ -116,7 +130,7 @@ export const Navbar: React.FC = () => {
                                 <MenuItem
                                     as={Link}
                                     style={{ color: 'inherit', textDecoration: 'none' }}
-                                    href="https://github.com/achako2012/octo-translator"
+                                    href="https://github.com/achako2012/about-alex"
                                 >
                                     View Source
                                 </MenuItem>
