@@ -99,10 +99,6 @@ export const Navbar: React.FC = () => {
                         </Link>
                     </Flex>
 
-                    {/* <Flex justify="right" ml={10}>
-                       
-                    </Flex> */}
-
                     <Box
                         flex={1}
                         ml={2}
