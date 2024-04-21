@@ -1,4 +1,4 @@
-import { Box, Button, Container, Heading, Spinner, SimpleGrid, Link } from '@chakra-ui/react';
+import { Box, Button, Container, Spinner, SimpleGrid, Link } from '@chakra-ui/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { ref, get, remove } from 'firebase/database';
 import { db } from '../../firebase-config';

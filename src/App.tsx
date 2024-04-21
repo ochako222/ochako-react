@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import './index.scss';
 
@@ -23,7 +23,8 @@ const App: React.FC = () => {
                 <Navbar />
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" element={<Navigate to="/posts" />} />
+                        <Route path="/about" element={<Home />} />
                         <Route path="/posts" element={<PostsList />} />
                         <Route path="/posts/:id" element={<EditPost />} />
                         <Route path="/posts/new" element={<EditPost />} />
