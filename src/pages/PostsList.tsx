@@ -1,10 +1,11 @@
+import { Helmet } from 'react-helmet';
 import { Box, Button, Container, Spinner, SimpleGrid, Link } from '@chakra-ui/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { ref, get, remove } from 'firebase/database';
-import { db } from '../../firebase-config';
-import { AuthContext } from '../../context/AuthContext';
-import { FirebasePostsI, Post } from '../../types';
-import { BlogCard } from '../../components/BlogCard';
+import { BlogCard } from '../components/BlogCard';
+import { AuthContext } from '../context/AuthContext';
+import { db } from '../firebase-config';
+import { Post, FirebasePostsI } from '../types';
 
 export const PostsList: React.FC = () => {
     const context = useContext(AuthContext);
@@ -57,23 +58,33 @@ export const PostsList: React.FC = () => {
     const posts = postsList?.length ? renderPosts(postsList) : <Spinner />;
 
     return (
-        <Container py={5} maxW="4xl">
-            <Box>
-                {context.isLoggedIn ? (
-                    <Link href="/posts/new">
-                        <Button colorScheme="blue">Add Topic</Button>
-                    </Link>
-                ) : (
-                    ''
-                )}
-            </Box>
+        <>
+            <Helmet>
+                <title>Posts list</title>
+                <meta property="og:title" content="Posts list" />
+                <meta name="description" content="Oleksandr Chako posts list" />
+                <meta property="og:description" content="Oleksandr Chako posts list" />
+                <meta property="og:url" content="https://aboutalex.com.ua/posts" />
+                <meta property="og:type" content="website" />
+            </Helmet>
+            <Container py={5} maxW="4xl">
+                <Box>
+                    {context.isLoggedIn ? (
+                        <Link href="/posts/new">
+                            <Button colorScheme="blue">Add Topic</Button>
+                        </Link>
+                    ) : (
+                        ''
+                    )}
+                </Box>
 
-            <Box py={5}>
-                <SimpleGrid columns={[2, 2, 3]} gap={10}>
-                    {posts}
-                </SimpleGrid>
-            </Box>
-        </Container>
+                <Box py={5}>
+                    <SimpleGrid columns={[2, 2, 3]} gap={10}>
+                        {posts}
+                    </SimpleGrid>
+                </Box>
+            </Container>
+        </>
     );
 };
 

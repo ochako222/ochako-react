@@ -7,8 +7,8 @@ import { Navbar } from './components/Navbar';
 import { Home } from './pages/Home';
 
 import { AuthContext, useAuth } from './context/AuthContext';
-import EditPost from './pages/posts/EditPost';
-import PostsList from './pages/posts/PostsList';
+import EditPost from './pages/EditPost';
+import PostsList from './pages/PostsList';
 
 const App: React.FC = () => {
     const { userId, login, logout } = useAuth();
