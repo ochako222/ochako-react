@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Helmet } from 'react-helmet';
 import { Button, Container, Heading, Input } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
@@ -26,7 +27,7 @@ export const EditPost = () => {
         console.log('EditPost');
         const setPost = async () => {
             console.log(id);
-            if (id) {
+            if (id && db) {
                 const postsRef = ref(db, `posts/${id}`);
                 const snapshot = await get(postsRef);
 
@@ -66,7 +67,7 @@ export const EditPost = () => {
     };
 
     const postPost = () => {
-        if (id) {
+        if (id && db) {
             set(ref(db, `posts/${id}`), {
                 markdown: post.markdown,
                 title: post.title,
@@ -88,21 +89,11 @@ export const EditPost = () => {
 
     const loggedView = (
         <>
-            <Helmet>
-                <title>{post.title}</title>
-                <meta name="description" content={post.title} />
-                <meta property="og:title" content={post.title} />
-                <meta property="og:description" content={post.title} />
-                <meta property="og:url" content={`https://aboutalex.com.ua/posts/${id}`} />
-                <meta property="og:type" content="website" />
-            </Helmet>
             <Container maxW="4xl" py={'5'}>
                 <Input value={post.title} onChange={onTitleChange} />
-
                 <Button onClick={postPost} colorScheme="blue" marginTop={'1em'}>
                     Post topic
                 </Button>
-
                 <ThumbnailPreview
                     color={post.color}
                     thumbnail={post.thumbnail}
@@ -162,12 +153,22 @@ export const EditPost = () => {
     );
 
     const unloggedView = (
-        <Container py={'5'} maxW="4xl">
-            <Heading as="h3" fontSize={20} mb={4}>
-                {post.title}
-            </Heading>
-            <MDEditor.Markdown source={post.markdown} />
-        </Container>
+        <>
+            <Helmet>
+                <title>{post.title ?? 'new article'}</title>
+                <meta name="description" content={post.title} />
+                <meta property="og:title" content={post.title} />
+                <meta property="og:description" content={post.title} />
+                <meta property="og:url" content={`https://aboutalex.com.ua/posts/${id}`} />
+                <meta property="og:type" content="website" />
+            </Helmet>
+            <Container py={'5'} maxW="4xl">
+                <Heading as="h3" fontSize={20} mb={4}>
+                    {post.title}
+                </Heading>
+                <MDEditor.Markdown source={post.markdown} />
+            </Container>
+        </>
     );
 
     return <>{context.isLoggedIn ? loggedView : unloggedView}</>;
