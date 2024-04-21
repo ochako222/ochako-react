@@ -42,8 +42,7 @@ export const Home: React.FC = () => (
                 <p>
                     I&apos;m a software developer in tests with a passion for building modern and
                     flexible digital services. I can manage all things with planning, designing and
-                    testing applications. When I&apos;m not pushing pixels, you&apos;ll find me
-                    watching Sci-fi.
+                    testing applications.
                 </p>
             </Box>
             <Box

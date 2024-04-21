@@ -71,7 +71,7 @@ export const Navbar: React.FC = () => {
                         flexGrow={2}
                         mt={{ base: 4, md: 0 }}
                     >
-                        <Link p={2} href="/" style={{ color: 'inherit' }}>
+                        <Link p={2} href="/about" style={{ color: 'inherit' }}>
                             About
                         </Link>
                         <Link p={2} bg="grassTeal" href="/posts" style={{ color: 'inherit' }}>
@@ -116,7 +116,7 @@ export const Navbar: React.FC = () => {
                                 <MenuItem
                                     as={Link}
                                     style={{ color: 'inherit', textDecoration: 'none' }}
-                                    href="/"
+                                    href="/about"
                                 >
                                     About
                                 </MenuItem>
@@ -133,6 +133,18 @@ export const Navbar: React.FC = () => {
                                     href="https://github.com/achako2012/about-alex"
                                 >
                                     View Source
+                                </MenuItem>
+                                <MenuItem
+                                    as={Link}
+                                    style={{ color: 'inherit', textDecoration: 'none' }}
+                                    href="https://buymeacoffee.com/aboutalex"
+                                >
+                                    <Image
+                                        objectFit="cover"
+                                        src={`${process.env.PUBLIC_URL}/coffee.webp`}
+                                        alt="Dan Abramov"
+                                        width="10em"
+                                    />
                                 </MenuItem>
                             </MenuList>
                         </Menu>
