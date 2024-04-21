@@ -12,34 +12,41 @@ export const PostsList: React.FC = () => {
     const [postsList, updatePostsList] = useState<Post[]>();
 
     const deletePost = (id: string) => {
-        const fooRef = ref(db, `posts/${id}`);
-        remove(fooRef);
+        if (db) {
+            const fooRef = ref(db, `posts/${id}`);
+            remove(fooRef);
 
-        const newPostsLiist = postsList?.filter((el) => el.id !== id);
-        updatePostsList(newPostsLiist);
+            const newPostsLiist = postsList?.filter((el) => el.id !== id);
+            updatePostsList(newPostsLiist);
+        } else {
+            console.log('db is null...');
+        }
     };
 
     useEffect(() => {
-        console.log('PostList');
         const setPost = async () => {
-            const postRef = ref(db, `posts`);
-            const snapshot = await get(postRef);
+            if (db) {
+                const postRef = ref(db, `posts`);
+                const snapshot = await get(postRef);
 
-            const fireBasePosts = snapshot.val() as FirebasePostsI[];
+                const fireBasePosts = snapshot.val() as FirebasePostsI[];
 
-            const posts: Post[] = [];
+                const posts: Post[] = [];
 
-            for (const [key, value] of Object.entries(fireBasePosts)) {
-                posts.push({
-                    id: key,
-                    title: value.title,
-                    markdown: value.markdown,
-                    thumbnail: value.thumbnail,
-                    color: value.color
-                });
+                for (const [key, value] of Object.entries(fireBasePosts)) {
+                    posts.push({
+                        id: key,
+                        title: value.title,
+                        markdown: value.markdown,
+                        thumbnail: value.thumbnail,
+                        color: value.color
+                    });
+                }
+
+                updatePostsList(posts);
+            } else {
+                console.log('db is null...');
             }
-
-            updatePostsList(posts);
         };
 
         setPost();

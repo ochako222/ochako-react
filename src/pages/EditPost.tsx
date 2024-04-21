@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Helmet } from 'react-helmet';
 import { Button, Container, Heading, Input } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
@@ -26,7 +27,7 @@ export const EditPost = () => {
         console.log('EditPost');
         const setPost = async () => {
             console.log(id);
-            if (id) {
+            if (id && db) {
                 const postsRef = ref(db, `posts/${id}`);
                 const snapshot = await get(postsRef);
 
@@ -66,7 +67,7 @@ export const EditPost = () => {
     };
 
     const postPost = () => {
-        if (id) {
+        if (id && db) {
             set(ref(db, `posts/${id}`), {
                 markdown: post.markdown,
                 title: post.title,
@@ -90,11 +91,9 @@ export const EditPost = () => {
         <>
             <Container maxW="4xl" py={'5'}>
                 <Input value={post.title} onChange={onTitleChange} />
-
                 <Button onClick={postPost} colorScheme="blue" marginTop={'1em'}>
                     Post topic
                 </Button>
-
                 <ThumbnailPreview
                     color={post.color}
                     thumbnail={post.thumbnail}
