@@ -88,14 +88,6 @@ export const EditPost = () => {
 
     const loggedView = (
         <>
-            <Helmet>
-                <title>{post.title}</title>
-                <meta name="description" content={post.title} />
-                <meta property="og:title" content={post.title} />
-                <meta property="og:description" content={post.title} />
-                <meta property="og:url" content={`https://aboutalex.com.ua/posts/${id}`} />
-                <meta property="og:type" content="website" />
-            </Helmet>
             <Container maxW="4xl" py={'5'}>
                 <Input value={post.title} onChange={onTitleChange} />
 
@@ -162,12 +154,22 @@ export const EditPost = () => {
     );
 
     const unloggedView = (
-        <Container py={'5'} maxW="4xl">
-            <Heading as="h3" fontSize={20} mb={4}>
-                {post.title}
-            </Heading>
-            <MDEditor.Markdown source={post.markdown} />
-        </Container>
+        <>
+            <Helmet>
+                <title>{post.title ?? 'new article'}</title>
+                <meta name="description" content={post.title} />
+                <meta property="og:title" content={post.title} />
+                <meta property="og:description" content={post.title} />
+                <meta property="og:url" content={`https://aboutalex.com.ua/posts/${id}`} />
+                <meta property="og:type" content="website" />
+            </Helmet>
+            <Container py={'5'} maxW="4xl">
+                <Heading as="h3" fontSize={20} mb={4}>
+                    {post.title}
+                </Heading>
+                <MDEditor.Markdown source={post.markdown} />
+            </Container>
+        </>
     );
 
     return <>{context.isLoggedIn ? loggedView : unloggedView}</>;
