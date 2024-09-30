@@ -6,6 +6,7 @@ interface ThumbnailPreviewProps {
     color: string;
     thumbnail: string;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onFileChange(value: any): void;
 
     onColorChange(value: string): void;

@@ -24,9 +24,7 @@ export const EditPost = () => {
     });
 
     useEffect(() => {
-        console.log('EditPost');
         const setPost = async () => {
-            console.log(id);
             if (id && db) {
                 const postsRef = ref(db, `posts/${id}`);
                 const snapshot = await get(postsRef);
@@ -45,6 +43,7 @@ export const EditPost = () => {
         });
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onMarkdownChange = (value: any) => {
         updatePost({
             ...post,

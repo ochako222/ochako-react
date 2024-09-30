@@ -13,6 +13,7 @@ import PostsList from './pages/PostsList';
 const App: React.FC = () => {
     const { userId, login, logout } = useAuth();
 
+    // If received user_id from token is equal to the user_id in the .env file, then the user is logged in
     const isLoggedIn = userId === process.env.REACT_APP_USER_ID;
 
     const auth = useMemo(() => ({ isLoggedIn, login, logout }), [isLoggedIn, login, logout]);

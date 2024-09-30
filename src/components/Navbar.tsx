@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
     Box,
     Button,
@@ -23,6 +22,7 @@ export const Navbar: React.FC = () => {
     const context = useContext(AuthContext);
 
     const loginHandler = async () => {
+        // retrieve user_id from google auth result response
         const provider = new GoogleAuthProvider();
         const result = await signInWithPopup(auth, provider);
 
