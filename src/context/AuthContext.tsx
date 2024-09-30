@@ -19,9 +19,7 @@ export const useAuth = () => {
         // retrieve user_id from token
         const userInfoFromToken = jwt_decode(token) as { user_id: string };
 
-        console.log(userInfoFromToken);
         setUserId(userInfoFromToken.user_id);
-        console.log(userId);
 
         localStorage.setItem(StorageItems.TIMESTAMP, timestamp);
         localStorage.setItem(StorageItems.TOKEN, token);
