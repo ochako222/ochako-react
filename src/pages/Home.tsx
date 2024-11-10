@@ -21,7 +21,8 @@ import {
     SiPlaywright,
     SiPython,
     SiFastapi,
-    SiRobotframework
+    SiRobotframework,
+    SiCucumber
 } from 'react-icons/si';
 
 import { TbSql } from 'react-icons/tb';
@@ -29,6 +30,7 @@ import { TbSql } from 'react-icons/tb';
 import { ReactComponent as EleksIcon } from '../assets/icons/eleks-vector-logo.svg';
 import { ReactComponent as CreatioIcon } from '../assets/icons/creatio-vector-logo.svg';
 import { ReactComponent as KindGeekIcon } from '../assets/icons/kindgeek-vector-logo.svg';
+import { ReactComponent as DataArtIcon } from '../assets/icons/dataart-vector-logo.svg';
 
 const ProfileImage = chakra(Image, {
     shouldForwardProp: (prop) => ['width', 'height', 'src', 'alt'].includes(prop)
@@ -119,6 +121,26 @@ export const Home: React.FC = () => (
 
                 <Paragraph>
                     I&apos;m currently working at
+                    <Link
+                        href="https://www.dataart.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                            textDecoration: 'none',
+                            display: 'inline',
+                            width: '20px',
+                            height: '20px',
+                            margin: '0 0 0 0.25em '
+                        }}
+                    >
+                        <DataArtIcon />
+                    </Link>
+                    ,as part of the automation team on a healthcare project. It’s great to be back
+                    in a collaborative environment, sharing ideas and supporting team members in
+                    advancing their automation skills.
+                    <br />
+                    <br />
+                    Before I was working at
                     <Link
                         href="https://www.eleks.com"
                         target="_blank"
@@ -226,6 +248,11 @@ export const Home: React.FC = () => (
                             <SiFastapi color="#EA2845" fontSize="3em" />
                         </GridItem>
                     </Tooltip>
+                    <Tooltip label="FastApi - 1 year" fontSize="md">
+                        <GridItem>
+                            <SiCucumber color="#23D96C" fontSize="3em" />
+                        </GridItem>
+                    </Tooltip>
                 </Grid>
             </Box>
 
@@ -242,15 +269,6 @@ export const Home: React.FC = () => (
                     maxW="container.md"
                     flexWrap="wrap"
                 >
-                    {/* <Social href="https://wa.me/380982829279" target="_blank">
-                        <Button
-                            variant="outline"
-                            colorScheme="whatsapp"
-                            leftIcon={<IoLogoWhatsapp />}
-                        >
-                            Whatsapp
-                        </Button>
-                    </Social> */}
                     <Social
                         href="https://www.linkedin.com/in/alexander-chako-907624154/"
                         target="_blank"
